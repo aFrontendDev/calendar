@@ -528,10 +528,13 @@
 			}
 		},
 		{
+			"contents": "",
 			"file": "dates.json",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 148602,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -608,6 +611,7 @@
 	},
 	"file_history":
 	[
+		"/Users/andy/Sites/calendar/calendar/calendar.sublime-project",
 		"/Users/andy/Sites/calendar/myDir/test.txt",
 		"/private/etc/apache2/httpd.conf",
 		"/private/etc/apache2/users/andy.conf",
@@ -734,8 +738,7 @@
 		"/Users/andy/Sites/uo-website-framework/src/pages/component/promos.hbs",
 		"/Users/andy/Sites/uo-website-framework/src/pages/component/review-ratings.hbs",
 		"/Users/andy/Sites/uo-website-framework/src/pages/component/show-hide.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/trip-tips.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/videos.hbs"
+		"/Users/andy/Sites/uo-website-framework/src/pages/component/trip-tips.hbs"
 	],
 	"find":
 	{
@@ -918,7 +921,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -990,7 +993,7 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1606.0,
+						"translation.y": 1571.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1000,7 +1003,7 @@
 					"file": "dates.json",
 					"settings":
 					{
-						"buffer_size": 148602,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -1008,7 +1011,7 @@
 						[
 							[
 								0,
-								148602
+								0
 							]
 						],
 						"settings":
@@ -1125,7 +1128,7 @@
 		"width": 0.0
 	},
 	"show_minimap": true,
-	"show_open_files": true,
+	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 278.0,

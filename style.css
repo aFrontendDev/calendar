@@ -1,0 +1,37 @@
+/* style.css */
+
+.calendar {
+
+}
+
+.calendar-header {
+
+}
+
+.calendar-days-label {
+
+}
+
+.calendar-body {
+
+}
+
+.calendar-week {
+	display: block;
+	float: left;
+	clear: left;
+
+}
+
+.calendar-day {
+
+}
+
+.calendar-cell {
+	display: block;
+	float: left;
+	width: 50px;
+	height: 50px;
+	border-right: solid 1px #ccc;
+	border-bottom: solid 1px #ccc;
+}
