@@ -46,43 +46,8 @@ function build_calendar($month,$year,$dateArray) {
         $monthArray['date'] = $date;
         $monthArray['currentDay'] = $currentDay;
         $monthArray['dayText'] = $dayText;
-        $monthArray['dayInt'] = $dayInt;
+        $monthArray['dayInt'] = $dayInt + 1;
         $monthArray['week'] = $week;
-
-        // echo $date;
-        // echo "\n";
-        // echo $dayInt;
-        // echo "\n";
-
-        // if ($dayInt === '0') {
-        //     // echo $dayInt;
-        //     // echo "\n";
-        //     $monthArray['day1'] = true;
-        // } else if ($dayInt === '1') {
-        //     // echo $dayInt;
-        //     // echo "\n";
-        //     $monthArray['day2'] = true;
-        // } else if ($dayInt === '2') {
-        //     // echo $dayInt;
-        //     // echo "\n";
-        //     $monthArray['day3'] = true;
-        // } else if ($dayInt === '3') {
-        //     // echo $dayInt;
-        //     // echo "\n";
-        //     $monthArray['day4'] = true;
-        // } else if ($dayInt === '4') {
-        //     // echo $dayInt;
-        //     // echo "\n";
-        //     $monthArray['day5'] = true;
-        // } else if ($dayInt === '5') {
-        //     // echo $dayInt;
-        //     // echo "\n";
-        //     $monthArray['day6'] = true;
-        // } else if ($dayInt === '6') {
-        //     // echo $dayInt;
-        //     // echo "\n";
-        //     $monthArray['day7'] = true;
-        // }
 
         if ($week === 1) {
             $monthArray['week1'] = true;
@@ -105,13 +70,9 @@ function build_calendar($month,$year,$dateArray) {
 }
 
 $dateComponents = getdate();
-// $month = $dateComponents['mon'];
-// $year = $dateComponents['year'];
 
 $month = $_POST['month'];
 $year = $_POST['year'];
-//$month = 10;
-//$year = 2015;
 
 $json = build_calendar($month,$year,$dateArray);
 

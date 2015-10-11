@@ -1,15 +1,30 @@
 /* style.css */
 
 .calendar {
-
 }
 
 .calendar-header {
+	display: block;
+	float: left;
+	border-top: solid 1px #ccc;
+}
 
+.calendar-cell {
+	display: block;
+	float: left;
+	width: 50px;
+	height: 50px;
+	border-right: solid 1px #ccc;
+	border-bottom: solid 1px #ccc;
+}
+
+.calendar-cell:first-of-type {
+	border-left: solid 1px #ccc;
 }
 
 .calendar-days-label {
-
+	height: auto;
+	text-align: center;
 }
 
 .calendar-body {
@@ -20,18 +35,8 @@
 	display: block;
 	float: left;
 	clear: left;
-
 }
 
 .calendar-day {
 
-}
-
-.calendar-cell {
-	display: block;
-	float: left;
-	width: 50px;
-	height: 50px;
-	border-right: solid 1px #ccc;
-	border-bottom: solid 1px #ccc;
 }
