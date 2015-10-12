@@ -1,5 +1,12 @@
 /* style.css */
 
+.block {
+	display: block;
+	float: left;
+	margin: 25px;
+	clear: both;
+}
+
 .calendar {
 }
 

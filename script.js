@@ -1,3 +1,8 @@
+var ref = new Firebase('https://flickering-fire-9049.firebaseio.com/');
+var fireGroups = new Firebase('https://flickering-fire-9049.firebaseio.com/groups');
+var fireUsers = new Firebase('https://flickering-fire-9049.firebaseio.com/users');
+var userId = null;
+
 function getMonth(month, year) {
 	var jsDate = new Date();
 
@@ -19,8 +24,6 @@ function getMonth(month, year) {
 		},
 		dataType: "json",
 		success: function ($data) {
-			//console.log('success');
-			//console.log($data);
 			populateCal($data, month, year);
 		},
 		error: function (error) {
@@ -44,8 +47,18 @@ function populateCal($dates, month, year) {
 	}
 
 	var $calDay = $cal.find('.calendar-day');
+
 	if ($calDay && $calDay.length > 0) {
-		$calDay.empty();
+		$calDay.each(function () {
+			var $thisDay = $(this);
+			var $dayBtn = $thisDay.find('.calendar-day-btn');
+
+			if ($dayBtn && $dayBtn.length > 0) {
+				$dayBtn.empty();
+			} else {
+				$thisDay.empty();
+			}
+		});
 	}
 
 	$.each($dates, function () {
@@ -90,7 +103,14 @@ function populateCal($dates, month, year) {
 			return;
 		}
 
-		$day.text(currentDay);
+		var $dayBtn = $day.find('.calendar-day-btn');
+
+		if ($dayBtn && $dayBtn.length > 0) {
+			$dayBtn.text(currentDay);
+		} else {
+			$day.text(currentDay);
+		}
+
 		$cal.attr('data-calendar-current-month', month);
 		$cal.attr('data-calendar-current-year', year);
 	});
@@ -151,7 +171,182 @@ function bindCalendarControl() {
 	});
 }
 
+function firebaseAuth() {
+	// var ref = new Firebase('https://flickering-fire-9049.firebaseio.com/');
+
+	var $loginFB = $('.action-login-facebook');
+	var $loginG = $('.action-login-google');
+
+	$loginG.on('click', function(e) {
+		e.preventDefault();
+
+		ref.authWithOAuthPopup("google", function(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData);
+				userId = authData.uid;
+				//viewGroups();
+				setUser('google', authData);
+			}
+		});
+	});
+
+	$loginFB.on('click', function(e) {
+		e.preventDefault();
+
+		ref.authWithOAuthPopup("facebook", function(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData);
+				userId = authData.uid;
+				//viewGroups();
+				setUser('facebook', authData);
+			}
+		});
+	});
+}
+
+function setUser(provider, authData) {
+	if (!provider || !authData) {
+		console.log('ERROR: setUser() - no provider or no authData');
+		return;
+	}
+
+	if (!userId || userId.length < 1) {
+		console.log('ERROR: setUser() - no userId');
+		return;
+	}
+
+	var google = false;
+	var facebook = false;
+
+	if (provider === 'google') {
+		google = true;
+	} else if (provider === 'facebook') {
+		facebook = true;
+	} else {
+		console.log('ERROR: setUser() - didnt recognise provider');
+		return;
+	}
+
+	var firstName = null;
+	var surname = null;
+	var fullName = null;
+	var photo = null;
+
+	if (google) {
+		firstName = authData.google.cachedUserProfile.given_name;
+		surname = authData.google.cachedUserProfile.family_name;
+		fullName = authData.google.displayName;
+		photo = authData.google.profileImageURL;
+	}
+
+	if (facebook) {
+		firstName = authData.facebook.cachedUserProfile.first_name;
+		surname = authData.facebook.cachedUserProfile.last_name;
+		fullName = authData.facebook.displayName;
+		photo = authData.facebook.profileImageURL;
+	}
+
+	fireUsers.push({
+		user: userId,
+		firstName: firstName,
+		surname: surname,
+		fullName: fullName,
+		photoURL: photo
+	});
+
+	// TODO - check uid against stored users so we don't create duplicates
+}
+
+function viewGroups() {
+	var $list = $('.calendar-groups');
+	if (!$list || $list.length < 1) {
+		console.log('ERROR: viewGroups() - no $list');
+		return;
+	}
+
+	// fireGroups.orderByChild('height').equalTo().on('value', function(snapshot) {
+	// 	console.log(snapshot.val());
+	// }, function (errorObject) {
+	// 	console.log('The read failed: ' + errorObject.code);
+	// });
+
+	var $li = $('<li />');
+
+	var $btn = $('<button />', {
+		'type': 'button',
+		'class': 'btn btn-style-a action-calendar-view'
+	});
+
+	var $span = $('<span />', {
+		'text': 'group'
+	});
+
+	$btn.append($span);
+	$li.append($btn);
+	$list.append($li);
+}
+
+function bindGroupButton() {
+	var $groupBtn = $('.action-calendar-create-group');
+	if (!$groupBtn || $groupBtn.length < 1) {
+		console.log('ERROR: bindGroupButton() - no $groupBtn');
+		return;
+	}
+
+	$groupBtn.on('click', function (e) {
+		e.preventDefault();
+		var $this = $(this);
+		createGroup($this);
+		// TODO - form validation
+	});
+}
+
+function createGroup($btn) {
+	if (!$btn) {
+		console.log('ERROR: createGroup() - no $btn');
+		return;
+	}
+
+	if (!userId || userId.length < 1) {
+		console.log('ERROR: createGroup() - no userId');
+		return;
+	}
+
+	var $form = $btn.closest('.form');
+	if (!$form || $form.length < 1) {
+		console.log('ERROR: createGroup() - no $form');
+		return;
+	}
+
+	var $groupName = $form.find('#group-name');
+	var $groupDesc = $form.find('#group-desc');
+
+	if ((!$groupName || $groupName.length < 1) || (!$groupDesc || $groupDesc.length < 1) ) {
+		console.log('ERROR: createGroup() - no $groupName or no $groupDesc');
+		return;
+	}
+
+	var groupName = $groupName.val();
+	var groupDesc = $groupDesc.val();
+
+	fireGroups.push({
+		name: groupName,
+		description: groupDesc,
+		owner: userId,
+		users: userId
+	});
+
+	var groupId = fireGroups.push().key();
+	console.log(groupId);
+}
+
 $(document).on('ready', function () {
 	getMonth();
 	bindCalendarControl();
+	firebaseAuth();
+	bindGroupButton();
 });
