@@ -2,6 +2,7 @@ var ref = new Firebase('https://flickering-fire-9049.firebaseio.com/');
 var fireGroups = new Firebase('https://flickering-fire-9049.firebaseio.com/groups');
 var fireUsers = new Firebase('https://flickering-fire-9049.firebaseio.com/users');
 var userId = null;
+var userExists = false;
 
 function getMonth(month, year) {
 	var jsDate = new Date();
@@ -250,6 +251,20 @@ function setUser(provider, authData) {
 		photo = authData.facebook.profileImageURL;
 	}
 
+	checkUserExists(firstName, surname, fullName, photo);
+}
+
+function checkUserExists(firstName, surname, fullName, photo) {
+	var hash = userId.hashCode();
+	ref.child('user_index/' + hash).once('value', function(snap) {
+		//console.log(snap.val());
+		if (!snap.val()) {
+			addUser(firstName, surname, fullName, photo);
+		}
+	});
+}
+
+function addUser(firstName, surname, fullName, photo) {
 	fireUsers.push({
 		user: userId,
 		firstName: firstName,
@@ -257,8 +272,8 @@ function setUser(provider, authData) {
 		fullName: fullName,
 		photoURL: photo
 	});
-
-	// TODO - check uid against stored users so we don't create duplicates
+	var hash = userId.hashCode();
+	ref.child('user_index/' + hash).set(userId);
 }
 
 function viewGroups() {
@@ -350,3 +365,18 @@ $(document).on('ready', function () {
 	firebaseAuth();
 	bindGroupButton();
 });
+
+String.prototype.hashCode = function() {
+	var hash = 0, i, chr, len;
+
+	if (this.length == 0) {
+		return hash;
+	}
+
+	for (i = 0, len = this.length; i < len; i++) {
+		chr   = this.charCodeAt(i);
+		hash  = ((hash << 5) - hash) + chr;
+		hash |= 0; // Convert to 32bit integer
+	}
+	return hash;
+};
