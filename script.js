@@ -251,6 +251,7 @@ function setUser(provider, authData) {
 		photo = authData.facebook.profileImageURL;
 	}
 
+	allowJoinCalendar();
 	checkUserExists(firstName, surname, fullName, photo);
 }
 
@@ -265,15 +266,17 @@ function checkUserExists(firstName, surname, fullName, photo) {
 }
 
 function addUser(firstName, surname, fullName, photo) {
-	fireUsers.push({
+	var hash = userId.hashCode();
+	ref.child('user_index/' + hash).set(userId);
+
+	var userPath = fireUsers.child(userId + '/');
+	userPath.set({
 		user: userId,
 		firstName: firstName,
 		surname: surname,
 		fullName: fullName,
 		photoURL: photo
 	});
-	var hash = userId.hashCode();
-	ref.child('user_index/' + hash).set(userId);
 }
 
 function viewGroups() {
@@ -348,15 +351,87 @@ function createGroup($btn) {
 	var groupName = $groupName.val();
 	var groupDesc = $groupDesc.val();
 
-	fireGroups.push({
+	var d = Date.now();
+	var groupHash = d.toString() + groupName;;
+	groupHash = groupHash.hashCode();
+
+	var groupPath = fireGroups.child(groupHash + '/');
+	groupPath.set({
 		name: groupName,
 		description: groupDesc,
-		owner: userId,
-		users: userId
+		owner: userId
 	});
 
-	var groupId = fireGroups.push().key();
-	console.log(groupId);
+	//var groupId = fireGroups.push().key();
+	//console.log(groupId);
+	addUserToGroup(groupHash, userId);
+}
+
+function addUserToGroup(groupId, user) {
+
+	if (!groupId || !user) {
+		console.log('ERROR: addUserToGroup() - no groupId or no user');
+		return;
+	}
+
+	var groupPath = new Firebase(fireGroups + '/' + groupId + '/users/' + user + '/');
+	groupPath.set({
+		active: true
+	});
+}
+
+function allowJoinCalendar() {
+	if (!userId || userId.length < 1) {
+		console.log('ERROR: allowJoinCalendar() - user not logged in');
+		return;
+	}
+
+	var $joinPassword = $('.join-calendar-password-input');
+	if (!$joinPassword || $joinPassword.length < 1) {
+		console.log('ERROR: allowJoinCalendar() - no $joinPassword');
+		return;
+	}
+
+	var $joinBtn = $('.action-calendar-join-group');
+	if (!$joinBtn || $joinBtn.length < 1) {
+		console.log('ERROR: allowJoinCalendar() - no $joinBtn');
+		return;
+	}
+
+	$joinPassword.prop('disabled', false);
+	$joinBtn.prop('disabled', false);
+
+	$joinBtn.on('click', function (e) {
+		e.preventDefault();
+		var password = $joinPassword.val();
+		if (!password || password.length < 1) {
+			console.log('ERROR: allowJoinCalendar() - no password');
+			return;
+		}
+
+		loadCalendar(password);
+	});
+}
+
+function loadCalendar(password) {
+	if (!password) {
+		console.log('ERROR: loadCalendar() - no password');
+		return;
+	}
+
+	var calId = getUrlParams('calendar');
+	if (!calId) {
+		console.log('ERROR: loadCalendar() - no calId');
+		return;
+	}
+
+	var groupRef = new Firebase(fireGroups + '/' + calId);
+	groupRef.on('value', function(snap) {
+		console.log(snap.val().password);
+		if (password === snap.val().password) {
+			addUserToGroup(calId, userId);
+		}
+	});
 }
 
 $(document).on('ready', function () {
@@ -364,7 +439,31 @@ $(document).on('ready', function () {
 	bindCalendarControl();
 	firebaseAuth();
 	bindGroupButton();
+	allowJoinCalendar();
 });
+
+function getUrlParams(parameter) {
+	var queryString = window.location.search;
+
+	if (queryString !== undefined) {
+		queryString = window.location.search.replace('?', '');
+
+		var params = {},
+			queryStringArray = queryString.split('&');
+
+		for (var index in queryStringArray) {
+			var query = queryStringArray[index].split('=');
+
+			params[decodeURIComponent(query[0])] = decodeURIComponent(query[1]);
+		}
+
+		if (parameter) {
+			return params[parameter];
+		} else {
+			return params;
+		}
+	}
+}
 
 String.prototype.hashCode = function() {
 	var hash = 0, i, chr, len;
