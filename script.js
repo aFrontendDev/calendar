@@ -5,6 +5,7 @@ var userId = null;
 var userExists = false;
 var groupData = null;
 var currentCal = null;
+var monthDates = null;
 
 function getMonth(month, year) {
 	var jsDate = new Date();
@@ -117,7 +118,7 @@ function populateCal($dates, month, year) {
 			$dayBtn.attr('data-calendar-full-date', fullDate);
 			$dayBtn.attr('data-calendar-year', year);
 			$dayBtn.attr('data-calendar-month', month);
-			$dayBtn.attr('data-calendar-day', currentDay);
+			$dayBtn.attr('data-calendar-date-day', currentDay);
 		} else {
 			$day.text(currentDay);
 		}
@@ -140,7 +141,7 @@ function bindDateBtn() {
 		var date = $this.attr('data-calendar-full-date');
 		var year = $this.attr('data-calendar-year');
 		var month = $this.attr('data-calendar-month');
-		var day = $this.attr('data-calendar-day');
+		var day = $this.attr('data-calendar-date-day');
 
 		if (!currentCal || currentCal.length < 1) {
 			console.log('ERROR: bindDateBtn() - btn click - no currentCal');
@@ -171,7 +172,7 @@ function bindDateBtn() {
 					if (!active) {
 						addDateEntry(groupDate);
 					} else {
-						removeDateEntry(groupDate);
+						removeDateEntry(groupDate, $this);
 					}
 				});
 			}
@@ -194,9 +195,10 @@ function addDateEntry(groupDate) {
 	groupDateUserRef.set({
 		active: true
 	});
+	loadCalendarData(currentCal);
 }
 
-function removeDateEntry(groupDate) {
+function removeDateEntry(groupDate, $btn) {
 	if (!groupDate) {
 		console.log('ERROR: removeDateEntry() - no groupDate');
 		return;
@@ -207,16 +209,28 @@ function removeDateEntry(groupDate) {
 		return;
 	}
 
-	var userEntryRef = new Firebase(groupDate + '/' + userId)
-	userEntryRef.remove(dateEntryRemovalComplate);
+	var childCount = 0;
+	groupDate.once('value', function (snap) {
+		childCount = snap.numChildren();
+		console.log('childCount');
+		console.log(childCount);
 
+		var userEntryRef = new Firebase(groupDate + '/' + userId);
+		userEntryRef.remove(dateEntryRemovalComplate(childCount, $btn));
+	});
 }
 
-function dateEntryRemovalComplate(error) {
+function dateEntryRemovalComplate(childCount, $btn, error) {
 	if (error) {
 		console.log('Synchronization failed');
 	} else {
-		console.log('Synchronization succeeded');
+		//console.log('Synchronization succeeded');
+		if (childCount === 1) {
+			var $btnCount = $btn.find('.calendar-date-user-count');
+			$btnCount.remove();
+		} else {
+			loadCalendarData(currentCal);
+		}
 	}
 }
 
@@ -248,8 +262,30 @@ function loadCalendarData(calGroup) {
 			return;
 		}
 
-	});
+		monthDates = snapshot.val();
+		for (key in monthDates) {
+			var date = key;
+			var userCount = objectLength(monthDates[key]);
+			var $dateBtn = $('*[data-calendar-date-day=' + date + ']');
 
+			if (!$dateBtn || $dateBtn.length < 1) {
+				console.log('ERROR: loadCalendarData() - for loop for month - no $date');
+				return;
+			}
+
+			$dateBtn.attr('data-calendar-date-user-count', userCount);
+			var $userCount = $dateBtn.find('.calendar-date-user-count');
+			if ($userCount && $userCount.length > 0) {
+				$userCount.text(userCount);
+			} else {
+				var $count = $('<span />', {
+					'class': 'calendar-date-user-count',
+					'text': userCount
+				});
+				$dateBtn.append($count);
+			}
+		}
+	});
 }
 
 function bindCalendarControl() {
@@ -710,6 +746,18 @@ function getUrlParams(parameter) {
 		}
 	}
 }
+
+function objectLength(data) {
+	var count = 0;
+
+	for (key in data) {
+		if (data.hasOwnProperty(key)) {
+			++count;
+		}
+	}
+
+	return count;
+};
 
 String.prototype.hashCode = function() {
 	var hash = 0, i, chr, len;
