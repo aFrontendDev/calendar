@@ -4,6 +4,7 @@ var fireUsers = new Firebase('https://flickering-fire-9049.firebaseio.com/users'
 var userId = null;
 var userExists = false;
 var groupData = null;
+var currentCal = null;
 
 function getMonth(month, year) {
 	var jsDate = new Date();
@@ -63,7 +64,10 @@ function populateCal($dates, month, year) {
 		});
 	}
 
-	$.each($dates, function () {
+	var datesLength = $dates.length;
+	//console.log('datesLength');
+	//console.log(datesLength);
+	$.each($dates, function (i) {
 		var $date = $(this)[0];
 		//console.log($date);
 
@@ -74,6 +78,7 @@ function populateCal($dates, month, year) {
 
 		var week = $date.week;
 		var day = $date.dayInt;
+		var fullDate = $date.date;
 
 		if (!week || !day) {
 			console.log('ERROR: populateCal() - no week or no day');
@@ -109,13 +114,142 @@ function populateCal($dates, month, year) {
 
 		if ($dayBtn && $dayBtn.length > 0) {
 			$dayBtn.text(currentDay);
+			$dayBtn.attr('data-calendar-full-date', fullDate);
+			$dayBtn.attr('data-calendar-year', year);
+			$dayBtn.attr('data-calendar-month', month);
+			$dayBtn.attr('data-calendar-day', currentDay);
 		} else {
 			$day.text(currentDay);
 		}
 
 		$cal.attr('data-calendar-current-month', month);
 		$cal.attr('data-calendar-current-year', year);
+
+		if (i + 1 === datesLength) {
+			//console.log('end of dates');
+			bindDateBtn();
+		}
 	});
+}
+
+function bindDateBtn() {
+	var $dateBtn = $('.action-calendar-day-btn');
+	$dateBtn.on('click', function (e) {
+		e.preventDefault();
+		var $this = $(this);
+		var date = $this.attr('data-calendar-full-date');
+		var year = $this.attr('data-calendar-year');
+		var month = $this.attr('data-calendar-month');
+		var day = $this.attr('data-calendar-day');
+
+		if (!currentCal || currentCal.length < 1) {
+			console.log('ERROR: bindDateBtn() - btn click - no currentCal');
+			return;
+		}
+
+		var groupDate = new Firebase(fireGroups + '/' + currentCal + '/dates/' + year + '/' + month + '/' + day);
+		groupDate.once('value', function(snapshot) {
+			var dayLength = snapshot.numChildren();
+			if (!dayLength || dayLength.length < 1) {
+				console.log('No date entry');
+				addDateEntry(groupDate);
+			} else {
+				var user = snapshot.val();
+				console.log('user');
+				console.log(user);
+
+				var groupDateUser = new Firebase(fireGroups + '/' + currentCal + '/dates/' + year + '/' + month + '/' + day + '/' + userId);
+				groupDateUser.once('value', function(snapshot) {
+					var userEntry = snapshot.val();
+					var active = null;
+					if (userEntry) {
+						active = snapshot.val().active;
+					} else {
+						addDateEntry(groupDate);
+					}
+
+					if (!active) {
+						addDateEntry(groupDate);
+					} else {
+						removeDateEntry(groupDate);
+					}
+				});
+			}
+		});
+	});
+}
+
+function addDateEntry(groupDate) {
+	if (!groupDate) {
+		console.log('ERROR: addDateEntry() - no groupDate');
+		return;
+	}
+
+	if (!currentCal || currentCal.length < 1) {
+		console.log('ERROR: addDateEntry() - no currentCal');
+		return;
+	}
+
+	var groupDateUserRef = new Firebase(groupDate + '/' + userId);
+	groupDateUserRef.set({
+		active: true
+	});
+}
+
+function removeDateEntry(groupDate) {
+	if (!groupDate) {
+		console.log('ERROR: removeDateEntry() - no groupDate');
+		return;
+	}
+
+	if (!currentCal || currentCal.length < 1) {
+		console.log('ERROR: removeDateEntry() - no currentCal');
+		return;
+	}
+
+	var userEntryRef = new Firebase(groupDate + '/' + userId)
+	userEntryRef.remove(dateEntryRemovalComplate);
+
+}
+
+function dateEntryRemovalComplate(error) {
+	if (error) {
+		console.log('Synchronization failed');
+	} else {
+		console.log('Synchronization succeeded');
+	}
+}
+
+function loadCalendarData(calGroup) {
+	if (!calGroup) {
+		console.log('ERROR: loadCalendarData() - no calGroup');
+		return;
+	}
+
+	var $cal = $('.calendar');
+	if (!$cal || $cal.length < 1) {
+		console.log('ERROR: loadCalendarData() - no $cal');
+		return;
+	}
+
+	var currentYear = $cal.attr('data-calendar-current-year');
+	var currentMonth = $cal.attr('data-calendar-current-month');
+	if (!currentYear || currentYear.length < 1 || !currentMonth || currentMonth < 1) {
+		console.log('ERROR: loadCalendarData() - no current year or no current month');
+		return;
+	}
+
+	currentCal = calGroup;
+	var groupDates = new Firebase(fireGroups + '/' + calGroup + '/dates/' + currentYear + '/' + currentMonth);
+	groupDates.once('value', function(snapshot) {
+		var datesLength = snapshot.numChildren();
+		if (!datesLength || datesLength < 1) {
+			console.log('No dates for this month yet');
+			return;
+		}
+
+	});
+
 }
 
 function bindCalendarControl() {
@@ -304,7 +438,7 @@ function viewGroups() {
 					// Now we have the number of users get the group info and then get the user info
 					var groupInfo = new Firebase(fireGroups + '/' + group);
 					groupInfo.once('value', function(snap) {
-						console.log(snap.val());
+						//console.log(snap.val());
 						var $groupInfo = snap.val();
 						groupData = snap;
 
@@ -330,13 +464,13 @@ function buildUserDetails($groupInfo, $list, usersLength, group) {
 	for (key in $groupInfo.users) {
 		var user = key;
 		var active = $groupInfo.users[key].active;
-		console.log(user);
+		//console.log(user);
 		if (user && active) {
 			var userInfo = new Firebase(fireUsers + '/' + user);
 			userInfo.once('value', function(snapshot) {
 				var data = snapshot.val();
-				console.log('data');
-				console.log(data);
+				//console.log('data');
+				//console.log(data);
 				userArray.push({
 					user: user,
 					fullname: data.fullName,
@@ -345,8 +479,8 @@ function buildUserDetails($groupInfo, $list, usersLength, group) {
 
 				count++;
 				if (count === usersLength) {
-					console.log('userArray');
-					console.log(userArray);
+					//console.log('userArray');
+					//console.log(userArray);
 					addGroupDetails($groupInfo, userArray, $list, group);
 				}
 			});
@@ -382,6 +516,19 @@ function addGroupDetails($groupInfo, userArray, $list, group) {
 		var template = Handlebars.compile(templateHTML),
 			data = template($data),
 			html = $targetContainer.append(data);
+
+		bindCalendarBtn();
+	});
+}
+
+function bindCalendarBtn() {
+	var $calBtn = $('.action-calendar-view');
+	$calBtn.on('click', function (e) {
+		e.preventDefault();
+		var $this = $(this);
+		var calGroup = $this.attr('data-calendar-group');
+		getMonth();
+		loadCalendarData(calGroup);
 	});
 }
 
@@ -441,6 +588,9 @@ function createGroup($btn) {
 		password: groupPass,
 		owner: userId
 	});
+
+	// set current calendar as the calendar id
+	currentCal = groupHash;
 
 	addUserToGroup(groupHash, userId);
 	addGroupToUser(groupHash, userId);
@@ -517,9 +667,12 @@ function loadCalendar(password) {
 		return;
 	}
 
+	// set current calendar as the calendar id
+	currentCal = calId;
+
 	var groupRef = new Firebase(fireGroups + '/' + calId);
 	groupRef.on('value', function(snap) {
-		console.log(snap.val().password);
+		//console.log(snap.val().password);
 		if (password === snap.val().password) {
 			addUserToGroup(calId, userId);
 			addGroupToUser(calId, userId);
