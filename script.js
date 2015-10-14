@@ -342,14 +342,16 @@ function createGroup($btn) {
 
 	var $groupName = $form.find('#group-name');
 	var $groupDesc = $form.find('#group-desc');
+	var $groupPass = $form.find('#group-pass');
 
-	if ((!$groupName || $groupName.length < 1) || (!$groupDesc || $groupDesc.length < 1) ) {
-		console.log('ERROR: createGroup() - no $groupName or no $groupDesc');
+	if ((!$groupName || $groupName.length < 1) || (!$groupDesc || $groupDesc.length < 1) || (!$groupPass || $groupPass.length < 1) ) {
+		console.log('ERROR: createGroup() - no $groupName or no $groupDesc or no $groupPass');
 		return;
 	}
 
 	var groupName = $groupName.val();
 	var groupDesc = $groupDesc.val();
+	var groupPass = $groupPass.val();
 
 	var d = Date.now();
 	var groupHash = d.toString() + groupName;;
@@ -359,12 +361,12 @@ function createGroup($btn) {
 	groupPath.set({
 		name: groupName,
 		description: groupDesc,
+		password: groupPass,
 		owner: userId
 	});
 
-	//var groupId = fireGroups.push().key();
-	//console.log(groupId);
 	addUserToGroup(groupHash, userId);
+	addGroupToUser(groupHash, userId);
 }
 
 function addUserToGroup(groupId, user) {
@@ -375,6 +377,19 @@ function addUserToGroup(groupId, user) {
 	}
 
 	var groupPath = new Firebase(fireGroups + '/' + groupId + '/users/' + user + '/');
+	groupPath.set({
+		active: true
+	});
+}
+
+function addGroupToUser(groupId, user) {
+
+	if (!groupId || !user) {
+		console.log('ERROR: addGroupToUser() - no groupId or no user');
+		return;
+	}
+
+	var groupPath = new Firebase(fireUsers + '/' + userId + '/groups/' + groupId + '/');
 	groupPath.set({
 		active: true
 	});
@@ -430,6 +445,7 @@ function loadCalendar(password) {
 		console.log(snap.val().password);
 		if (password === snap.val().password) {
 			addUserToGroup(calId, userId);
+			addGroupToUser(calId, userId);
 		}
 	});
 }
