@@ -3,6 +3,7 @@ var fireGroups = new Firebase('https://flickering-fire-9049.firebaseio.com/group
 var fireUsers = new Firebase('https://flickering-fire-9049.firebaseio.com/users');
 var userId = null;
 var userExists = false;
+var groupData = null;
 
 function getMonth(month, year) {
 	var jsDate = new Date();
@@ -187,7 +188,7 @@ function firebaseAuth() {
 			} else {
 				console.log("Authenticated successfully with payload:", authData);
 				userId = authData.uid;
-				//viewGroups();
+				viewGroups();
 				setUser('google', authData);
 			}
 		});
@@ -202,7 +203,7 @@ function firebaseAuth() {
 			} else {
 				console.log("Authenticated successfully with payload:", authData);
 				userId = authData.uid;
-				//viewGroups();
+				viewGroups();
 				setUser('facebook', authData);
 			}
 		});
@@ -286,26 +287,102 @@ function viewGroups() {
 		return;
 	}
 
-	// fireGroups.orderByChild('height').equalTo().on('value', function(snapshot) {
-	// 	console.log(snapshot.val());
-	// }, function (errorObject) {
-	// 	console.log('The read failed: ' + errorObject.code);
-	// });
+	var groupsRef = new Firebase(fireUsers + '/' + userId + '/groups/');
+	groupsRef.once('value', function(snapshot) {
+		// Get all groups associated with user
+		snapshot.forEach(function(childSnapshot) {
+			var group = childSnapshot.key();
+			var active = childSnapshot.val().active;
 
-	var $li = $('<li />');
+			// If group is still active get data on that group
+			if (active) {
+				var groupUsers = new Firebase(fireGroups + '/' + group + '/users');
+				//getUserLength(groupUsers);
+				groupUsers.once('value', function(snapshot) {
+					usersLength = snapshot.numChildren();
 
-	var $btn = $('<button />', {
-		'type': 'button',
-		'class': 'btn btn-style-a action-calendar-view'
+					// Now we have the number of users get the group info and then get the user info
+					var groupInfo = new Firebase(fireGroups + '/' + group);
+					groupInfo.once('value', function(snap) {
+						console.log(snap.val());
+						var $groupInfo = snap.val();
+						groupData = snap;
+
+						if ($groupInfo) {
+							//addGroupDetails($groupInfo, $list);
+							buildUserDetails($groupInfo, $list, usersLength, group);
+						}
+					});
+				});
+			}
+		});
+	});
+}
+
+function buildUserDetails($groupInfo, $list, usersLength, group) {
+	if (!$groupInfo || !$list || !usersLength) {
+		console.log('ERROR: buildUserDetails() - no $groupInfo or no $list or no usersLength or no group');
+		return;
+	}
+
+	var count = 0;
+	var userArray = [];
+	for (key in $groupInfo.users) {
+		var user = key;
+		var active = $groupInfo.users[key].active;
+		console.log(user);
+		if (user && active) {
+			var userInfo = new Firebase(fireUsers + '/' + user);
+			userInfo.once('value', function(snapshot) {
+				var data = snapshot.val();
+				console.log('data');
+				console.log(data);
+				userArray.push({
+					user: user,
+					fullname: data.fullName,
+					img: data.photoURL
+				});
+
+				count++;
+				if (count === usersLength) {
+					console.log('userArray');
+					console.log(userArray);
+					addGroupDetails($groupInfo, userArray, $list, group);
+				}
+			});
+		}
+	}
+}
+
+function addGroupDetails($groupInfo, userArray, $list, group) {
+	if (!$groupInfo || !userArray || !$list) {
+		console.log('ERROR: addGroupDetails() - no $groupInfo or no userArray or no $list or no group');
+		return;
+	}
+
+	var $data = {
+		title: $groupInfo.name,
+		desc: $groupInfo.description,
+		group: group,
+		members: userArray
+	};
+
+	var reqTemplate = null,
+		template = 'templates/groupItem.hbs',
+		templateHTML = null,
+		$targetContainer = $list;
+
+	reqTemplate = $.get(template, function(view) {
+		// Create view from template and data
+		templateHTML = view;
 	});
 
-	var $span = $('<span />', {
-		'text': 'group'
-	});
+	$.when(reqTemplate).done(function() {
 
-	$btn.append($span);
-	$li.append($btn);
-	$list.append($li);
+		var template = Handlebars.compile(templateHTML),
+			data = template($data),
+			html = $targetContainer.append(data);
+	});
 }
 
 function bindGroupButton() {
