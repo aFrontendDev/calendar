@@ -344,10 +344,9 @@ function bindCalendarControl() {
 }
 
 function firebaseAuth() {
-	// var ref = new Firebase('https://flickering-fire-9049.firebaseio.com/');
-
 	var $loginFB = $('.action-login-facebook');
 	var $loginG = $('.action-login-google');
+	var $loginT = $('.action-login-twitter');
 
 	$loginG.on('click', function(e) {
 		e.preventDefault();
@@ -378,6 +377,22 @@ function firebaseAuth() {
 			}
 		});
 	});
+
+	$loginT.on('click', function(e) {
+		e.preventDefault();
+
+		ref.authWithOAuthPopup("twitter", function(error, authData) {
+
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData);
+				userId = authData.uid;
+				viewGroups();
+				setUser('twitter', authData);
+			}
+		});
+	});
 }
 
 function setUser(provider, authData) {
@@ -393,11 +408,14 @@ function setUser(provider, authData) {
 
 	var google = false;
 	var facebook = false;
+	var twitter = false;
 
 	if (provider === 'google') {
 		google = true;
 	} else if (provider === 'facebook') {
 		facebook = true;
+	} else if (provider === 'twitter') {
+		twitter = true;
 	} else {
 		console.log('ERROR: setUser() - didnt recognise provider');
 		return;
@@ -420,6 +438,13 @@ function setUser(provider, authData) {
 		surname = authData.facebook.cachedUserProfile.last_name;
 		fullName = authData.facebook.displayName;
 		photo = authData.facebook.profileImageURL;
+	}
+
+	if (twitter) {
+		firstName = '';
+		surname = '';
+		fullName = authData.twitter.displayName;
+		photo = authData.twitter.profileImageURL;
 	}
 
 	allowJoinCalendar();
@@ -712,6 +737,7 @@ function loadCalendar(password) {
 		if (password === snap.val().password) {
 			addUserToGroup(calId, userId);
 			addGroupToUser(calId, userId);
+			loadCalendarData(calId);
 		}
 	});
 }
