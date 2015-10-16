@@ -1,0 +1,183 @@
+// footer.less
+
+.footer {
+	position: relative;
+	z-index: 1;
+}
+
+.footer-inner {
+	width: 100%;
+	max-width: @max-width;
+	padding: 0 @ggw/2;
+	margin: 0 auto;
+
+	@media @BPF {
+		padding: 0;
+	}
+}
+
+.footer-back-to-top {
+	padding: @vr*10 0;
+	text-align: center;
+}
+
+.back-to-top {
+
+	.icon {
+		color: @brand-color-c;
+		font-size: 24px;
+		border: 2px solid @brand-color-a;
+		border-radius: 100%;
+		padding: 7px;
+		transition: color 400ms ease;
+
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+
+.footer-top {
+	float: left;
+	width: 100%;
+	background-color: @brand-color-j;
+	color: #fff;
+}
+
+.footer-bottom {
+	float: left;
+	width: 100%;
+	background-color: @brand-color-k;
+	color: #fff;
+	padding: @vr*7 0;
+	border-top: 2px solid #1e3d4c;
+
+	@media @BPD {
+		border-top: none;
+	}
+
+	.footer-bottom-content {
+
+		@media @BPC {
+			display: table;
+			width: 100%;
+			float: left;
+			text-align: right;
+		}
+
+		.footer-bottom-content-item {
+			display: block;
+			margin-bottom: @vr*3;
+			width: 100%;
+			text-align: center;
+
+			@media @BPC {
+				display: table-cell;
+				vertical-align: middle;
+				text-align: inherit;
+				width: auto;
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.footer-links-a {
+	margin-bottom: @vr*14;
+	border-top: solid 1px #1890c7;
+	border-bottom: solid 1px #1890c7;
+	padding: @vr*7 @ggw*1.5;
+	padding-bottom: @vr*5;
+	text-align: center;
+
+	a {
+		display: block;
+
+		@media @BPD {
+			display: inline-block;
+		}
+	}
+}
+
+.footer-links-b {
+	float: left;
+	width: 100%;
+	margin-bottom: 80px;
+	padding: 0 @ggw;
+
+	@media @BPD {
+		padding: 0
+	}
+}
+
+.footer-article {
+	// 50% D
+	// 25% E+
+	float: left;
+	width: 100%;
+	margin-bottom: @vr*3;
+
+	@media (min-width: @break-point-c) {
+		.fluid-width((@gcw*6) + (@ggw*5), @max-width);
+		.fluid-margin-right(@ggw, @max-width);
+
+		&:nth-of-type(2n) {
+			margin-right: 0;
+		}
+	}
+
+	@media (min-width: @break-point-e) {
+		.fluid-width((@gcw*3) + (@ggw*2), @max-width);
+
+		&:nth-of-type(2n) {
+			.fluid-margin-right(@ggw, @max-width);
+		}
+		&:last-of-type {
+			margin-right: 0;
+		}
+
+	}
+
+	&:last-of-type {
+		margin-right: 0;
+	}
+
+	ul {
+		padding: 0;
+
+		li {
+			a {
+				text-decoration: none;
+				color: @brand-color-c;
+
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	.footer-article-title {
+		font-family: @font-family-base;
+		font-size: 18px;
+		line-height: @vr*4;
+		margin-bottom: @vr;
+		text-transform: uppercase;
+	}
+}
+
+.footer-copyright {
+}
+
+.footer-logo {
+
+	@media @BPC {
+		float: left;
+		display: block;
+		max-width: 140px;
+	}
+
+	img {
+		vertical-align: top;
+	}
+}

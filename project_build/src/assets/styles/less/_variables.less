@@ -1,0 +1,142 @@
+// variables.less
+
+// Primary Palette
+@brand-color-a: #0095c8; // Primary light blue
+@brand-color-b: #002f6c; // Secondary dark blue
+@brand-color-c: #9bcbeb; // Secondary light blue
+@brand-color-d: #3d3d3d; // Dark grey
+@brand-color-e: #9e9e9e; // Mid grey
+@brand-color-f: #f5f5f5; // Light grey
+@brand-color-g: #606060; // Dark grey 2
+@brand-color-h: #c5c5c5; // Mid grey 2
+@brand-color-i: #e8e8e8; // Light grey 2
+@brand-color-j: #20282d; // Very dark grey
+@brand-color-k: #1b2227; // Very dark grey 2
+@brand-color-l: #8d8d8d; // Mid grey 3
+@brand-color-m: #44a4e1; // Title blue
+@brand-color-n: #e9e9e9; // Line grey
+@brand-color-o: #1e93c8; // Dots/line blue
+@brand-color-p: #ffdf60; // Button yellow
+
+//social colors
+@color-twitter: #55ACEE;
+@color-facebook: #3B5998;
+@color-linkedin: #1C86BD;
+@color-youtube: #cd201f;
+@color-tumblr: #35465d;
+@color-pinterest: #cc2127;
+@color-gplus: #DD4B39;
+
+// easy access color names
+@color-text: #333;
+
+// Shadows
+@box-shadow-a: ~'0 0 15px rgba(0, 0, 0, 0.5)';
+@box-shadow-b: ~'0 0 15px rgba(0,0,0,0.2)';
+@box-shadow-c: ~'0 0 7px 0 rgba(0, 0, 0, 0.3)';
+
+// Typography
+@font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif: Helvetica, Arial, sans-serif;
+@font-family-serif-book: Helvetica, Arial, sans-serif;
+@font-family-mono: "Anonymous Pro", "Droid Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, "Lucida Console", Courier, monospace;
+@font-family-base: @font-family-sans-serif;
+
+// Font Sizing
+@font-size-base: 16px;
+@font-size-small: 14px;
+@line-height-base: @vr*4; // 24px
+@line-height-small: @vr*3; // 18px
+
+@font-weight-bold: 700; // 700 when not using @font-face
+@font-weight-medium: 600; // 600 when not using @font-face
+@font-weight-regular: 400; // 400 when not using @font-face
+@font-weight-light: 100; // 100 when not using @font-face
+
+// Settings
+@icon-prefix: ~'icon';
+@directory-images: "../images/css";
+@directory-fonts: "fonts";
+
+// Dimensions
+@max-outer-width: 1600px; // max outer width
+@max-width: 1180px; // overall max width
+@font-size-html: 100%;
+@rem-base: 16px; // 100% browser default font size
+@vertical-rhythm: 6px; // use @vr*X to maintain vertical consistency
+@vr: @vertical-rhythm; // Alias
+
+// Grid system
+@grid-columns: 12;
+@grid-column-width: 80px;
+@gcw: @grid-column-width; // Alias
+@grid-gutter-width: 20px;
+@ggw: @grid-gutter-width; // Alias
+@grid-total-width: 100%;
+@grid-gridsystem-width: (@gcw*@grid-columns) + (@ggw*@grid-columns) * 1px;
+@grid-correction: 0.5 / @grid-total-width * 100 * 1%; // IE7 See http://tylertate.com/blog/2012/01/05/subpixel-rounding.html
+// Custom smallscreen sizes
+@smallscreen-grid-gutter-width: 15px;
+@ggw-smallscreen: @smallscreen-grid-gutter-width;
+
+// Region A
+@region-a-width: (@gcw*12) + (@ggw*11);
+@region-a-inner-width: @region-a-width + @ggw;
+// Region B
+@region-b-width: (@gcw*8) + (@ggw*7);
+@region-b-inner-width: @region-b-width + @ggw;
+// Region C
+@region-c-width: (@gcw*4) + (@ggw*3);
+@region-c-inner-width: @region-c-width + @ggw;
+
+// Media Query Break Points (px & em)
+@break-point-a-px: 320px;
+@break-point-a-em-val: ~`parseInt("@{break-point-a-px}", 10) / parseInt("@{rem-base}", 10)`;
+@break-point-a-em: ~"@{break-point-a-em-val}em";
+// Set to -px or -em
+@break-point-a: @break-point-a-em;
+
+@break-point-b-px: 480px;
+@break-point-b-em-val: ~`parseInt("@{break-point-b-px}", 10) / parseInt("@{rem-base}", 10)`;
+@break-point-b-em: ~"@{break-point-b-em-val}em";
+// Set to -px or -em
+@break-point-b: @break-point-b-em;
+
+@break-point-c-px: 600px;
+@break-point-c-em-val: ~`parseInt("@{break-point-c-px}", 10) / parseInt("@{rem-base}", 10)`;
+@break-point-c-em: ~"@{break-point-c-em-val}em";
+// Set to -px or -em
+@break-point-c: @break-point-c-em;
+
+@break-point-d-px: 768px;
+@break-point-d-em-val: ~`parseInt("@{break-point-d-px}", 10) / parseInt("@{rem-base}", 10)`;
+@break-point-d-em: ~"@{break-point-d-em-val}em";
+// Set to -px or -em
+@break-point-d: @break-point-d-em;
+
+@break-point-e-px: 980px;
+@break-point-e-em-val: ~`parseInt("@{break-point-e-px}", 10) / parseInt("@{rem-base}", 10)`;
+@break-point-e-em: ~"@{break-point-e-em-val}em";
+// Set to -px or -em
+@break-point-e: @break-point-e-em;
+
+@break-point-f-px: 1200px;
+@break-point-f-em-val: ~`parseInt("@{break-point-f-px}", 10) / parseInt("@{rem-base}", 10)`;
+@break-point-f-em: ~"@{break-point-f-em-val}em";
+// Set to -px or -em
+@break-point-f: @break-point-f-em;
+
+@break-point-g-px: 1400px;
+@break-point-g-em-val: ~`parseInt("@{break-point-g-px}", 10) / parseInt("@{rem-base}", 10)`;
+@break-point-g-em: ~"@{break-point-g-em-val}em";
+// Set to -px or -em
+@break-point-g: @break-point-g-em;
+
+// For break point shorthands
+@BPA: ~"(min-width: @{break-point-a})";
+@BPB: ~"(min-width: @{break-point-b})";
+@BPC: ~"(min-width: @{break-point-c})";
+@BPD: ~"(min-width: @{break-point-d})";
+@BPE: ~"(min-width: @{break-point-e})";
+@BPF: ~"(min-width: @{break-point-f})";
+@BPG: ~"(min-width: @{break-point-g})";
