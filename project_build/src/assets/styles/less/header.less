@@ -1,12 +1,18 @@
 // header.less
 
 .header {
-	position: fixed;
-	top: 0;
-	left:0;
-	right:0;
-	z-index: 2;
-	text-align: center;
+	position: relative;
+	margin: @vr*2 @ggw/2;
+
+	@media @BPC {
+		margin: 0;
+		position: fixed;
+		top: 0;
+		left:0;
+		right:0;
+		z-index: 2;
+		text-align: center;
+	}
 }
 
 .header-inner {
@@ -14,12 +20,32 @@
 }
 
 .logo {
+	float: left;
 	display: inline-block;
+
+	@media @BPC {
+		float: none;
+	}
+}
+
+.logo-title {
+	font-size: 20px;
+	line-height: @vr*4;
+	margin: 0;
+
+	@media @BPC {
+		font-size: 66px;
+		line-height: @vr*11;
+	}
 }
 
 .header-actions {
 	position: absolute;
-	right: @ggw;
 	top: 50%;
 	transform: translateY(-50%);
+	right: 0;
+
+	@media @BPC {
+		right: @ggw;
+	}
 }
