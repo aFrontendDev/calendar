@@ -4,12 +4,228 @@
 		"selected_items":
 		[
 			[
-				"mon",
-				"monthJson"
+				"font",
+				"font-size"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"cen",
+				"center"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"cal",
+				"calId"
+			],
+			[
+				"$btn",
+				"$btnCount"
+			],
+			[
+				"child",
+				"childCount"
+			],
+			[
+				"user",
+				"userCount"
+			],
+			[
+				"$date",
+				"$dateBtn"
+			],
+			[
+				"groupD",
+				"groupDate"
+			],
+			[
+				"use",
+				"userId"
+			],
+			[
+				"curre",
+				"currentCal"
+			],
+			[
+				"curr",
+				"currentCal"
 			],
 			[
 				"day",
-				"dayInt"
+				"dayLength"
+			],
+			[
+				"dates",
+				"datesLength"
+			],
+			[
+				"cur",
+				"currentMonth"
+			],
+			[
+				"loadC",
+				"loadCalendarData"
+			],
+			[
+				"$cal",
+				"$cal"
+			],
+			[
+				"curren",
+				"currentDay"
+			],
+			[
+				"loa",
+				"loadCalendarData"
+			],
+			[
+				"cu",
+				"currentCal"
+			],
+			[
+				"$dat",
+				"$dateBtn"
+			],
+			[
+				"date",
+				"datesLength"
+			],
+			[
+				"ful",
+				"fullDate"
+			],
+			[
+				"add",
+				"addGroupDetails"
+			],
+			[
+				"snap",
+				"snapshot"
+			],
+			[
+				"photo",
+				"photoURL"
+			],
+			[
+				"$group",
+				"$groupInfo"
+			],
+			[
+				"ad",
+				"addGroupDetails"
+			],
+			[
+				"$li",
+				"$list"
+			],
+			[
+				"$grou",
+				"$groupInfo"
+			],
+			[
+				"fire",
+				"fireGroups"
+			],
+			[
+				"gr",
+				"groupPass"
+			],
+			[
+				"group",
+				"groupRef"
+			],
+			[
+				"$joi",
+				"$joinPassword"
+			],
+			[
+				"$join",
+				"$joinBtn"
+			],
+			[
+				"joinC",
+				"allowJoinCalendar"
+			],
+			[
+				"get",
+				"getUrlParams"
+			],
+			[
+				"code",
+				"hashCode"
+			],
+			[
+				"grop",
+				"groupId"
+			],
+			[
+				"addU",
+				"addUserToGroup"
+			],
+			[
+				"grou",
+				"groupId"
+			],
+			[
+				"usr",
+				"userId"
+			],
+			[
+				"hash",
+				"hashCode"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"fir",
+				"firstName"
+			],
+			[
+				"pro",
+				"provider"
+			],
+			[
+				"grp",
+				"groupId"
+			],
+			[
+				"us",
+				"userId"
+			],
+			[
+				"$this",
+				"$thisDay"
+			],
+			[
+				"$day",
+				"$dayBtn"
+			],
+			[
+				"$login",
+				"$loginFB"
+			],
+			[
+				"data",
+				"dataMonth"
+			],
+			[
+				"$data",
+				"$dataYear"
+			],
+			[
+				"js",
+				"jsDate"
+			],
+			[
+				"mon",
+				"monthJson"
 			],
 			[
 				"item",
@@ -28,10 +244,6 @@
 				"json_encode"
 			],
 			[
-				"date",
-				"dateArray"
-			],
-			[
 				"che",
 				"checked"
 			],
@@ -42,10 +254,6 @@
 			[
 				"bind",
 				"bindActiveFilterAction"
-			],
-			[
-				"data",
-				"dataRelatedId"
 			],
 			[
 				"data-",
@@ -306,235 +514,73 @@
 			[
 				"act",
 				"actionSearchSelector"
-			],
-			[
-				"close",
-				"closest"
-			],
-			[
-				"hide",
-				"hideSearch"
-			],
-			[
-				"$headerSearch",
-				"$headerSearchContainer"
-			],
-			[
-				"fixh",
-				"fixHeaderIn"
-			],
-			[
-				"scrol",
-				"scrollPosition"
-			],
-			[
-				"sc",
-				"scrollPosition"
-			],
-			[
-				"aut",
-				"autoHideSearch"
-			],
-			[
-				"search",
-				"searchHeader"
-			],
-			[
-				"fix",
-				"fixHeaderShowTimout"
-			],
-			[
-				"border-col",
-				"border-color"
-			],
-			[
-				"ab",
-				"absolute"
-			],
-			[
-				"ri",
-				"right"
-			],
-			[
-				"margin",
-				"margin-left"
-			],
-			[
-				"headerW",
-				"headerWidgetAutoOpenClass"
-			],
-			[
-				"blo",
-				"block"
-			],
-			[
-				"ev",
-				"event"
-			],
-			[
-				"daat",
-				"dataMinCharacters"
-			],
-			[
-				"da",
-				"dataMinCharacters"
-			],
-			[
-				"val",
-				"valLength"
-			],
-			[
-				"promo",
-				"data-promocode-endpoint"
-			],
-			[
-				"promocode-",
-				"data-promocode-min-characters"
-			],
-			[
-				"ease-in",
-				"ease-in"
-			],
-			[
-				"trans",
-				"transition	CSS - transition: ;"
-			],
-			[
-				"foot",
-				"footerInnerPosition"
-			],
-			[
-				"flo",
-				"floatingFooterPostion"
-			],
-			[
-				"$foo",
-				"$footerInner"
-			],
-			[
-				"Ticke",
-				"Tickets"
-			],
-			[
-				"list",
-				"listItem"
-			],
-			[
-				"padd",
-				"padding-bottom"
-			],
-			[
-				"icon",
-				"icon-arrow-right"
-			],
-			[
-				"brand",
-				"color-brand-b"
-			],
-			[
-				"$actio",
-				"$actionHeaderWidget"
-			],
-			[
-				"sett",
-				"settings"
-			],
-			[
-				"cur",
-				"cursor"
-			],
-			[
-				"box",
-				"box-shadow"
-			],
-			[
-				"pos",
-				"position"
-			],
-			[
-				"footerSignU",
-				"footerSignUpForm"
-			],
-			[
-				"promocode",
-				"promocode-auto-valid"
-			],
-			[
-				"prom",
-				"promocode-auto"
-			],
-			[
-				"footerS",
-				"footerSignUpForm"
-			],
-			[
-				"footerSignUpI",
-				"footerSignUpInfoInner"
-			],
-			[
-				"footerSign",
-				"footerSignUpInfoSuccess"
-			],
-			[
-				"footer",
-				"footerSignUpForm"
-			],
-			[
-				"clo",
-				"closestLi"
-			],
-			[
-				"sub",
-				"subnavMenu"
-			],
-			[
-				"subnav",
-				"subnavMenu"
-			],
-			[
-				"subnavM",
-				"subnavMenuInClass"
-			],
-			[
-				"z-",
-				"z-index"
-			],
-			[
-				"paddin",
-				"padding-top"
-			],
-			[
-				"to",
-				"toggleIn"
-			],
-			[
-				"hi",
-				"hidden"
-			],
-			[
-				"lin",
-				"line-height"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "getDates.php",
+			"file": "calendar.html",
 			"settings":
 			{
-				"buffer_size": 3763,
+				"buffer_size": 11163,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "",
-			"file": "dates.json",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "script.js",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 19322,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "landing.html",
+			"settings":
+			{
+				"buffer_size": 1028,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 1603,
+				"line_ending": "Unix",
+				"name": "/* style.css */"
+			}
+		},
+		{
+			"file": "project_build/src/partials/header/header.hbs",
+			"settings":
+			{
+				"buffer_size": 625,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "project_build/src/assets/styles/less/_variables.less",
+			"settings":
+			{
+				"buffer_size": 4924,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "project_build/src/assets/styles/less/header.less",
+			"settings":
+			{
+				"buffer_size": 561,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "project_build/src/assets/styles/less/layout.less",
+			"settings":
+			{
+				"buffer_size": 3295,
 				"line_ending": "Unix"
 			}
 		}
@@ -542,9 +588,17 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 87.0,
+		"height": 127.0,
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
 			[
 				"must",
 				"Set Syntax: HTML with mustaches"
@@ -588,10 +642,6 @@
 			[
 				"instal",
 				"Package Control: Install Package"
-			],
-			[
-				"pack",
-				"Package Control: Install Package"
 			]
 		],
 		"width": 530.0
@@ -611,6 +661,28 @@
 	},
 	"file_history":
 	[
+		"/Users/andy/Sites/calendar/calendar/project_build/src/partials/footer/footer.hbs",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/assets/styles/less/icons.less",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/assets/styles/less/_order.less",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/assets/styles/less/fonts.less",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/assets/styles/less/modal.less",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/data/project.json",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/partials/head/head-scripts.hbs",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/partials/head/head-fonts.hbs",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/partials/header/header-navigation.hbs",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/partials/header/header-logo.hbs",
+		"/Users/andy/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/layouts/_bb.hbs",
+		"/Users/andy/Sites/calendar/calendar/project_build/src/pages/_index.hbs",
+		"/Users/andy/Sites/calendar/calendar/project_build/package.json",
+		"/Users/andy/Sites/calendar/calendar/project_build/bower.json",
+		"/Users/andy/Sites/calendar/calendar/monthJson.php",
+		"/Users/andy/Sites/calendar/calendar/templates/groupItem.hbs",
+		"/Users/andy/Sites/calendar/calendar/test.html",
+		"/Users/andy/Sites/calendar/calendar/dateList.json",
+		"/Users/andy/Sites/calendar/calendar/calendar.hbs",
+		"/Users/andy/Sites/calendar/calendar/getDates.php",
+		"/Users/andy/Sites/calendar/calendar/dates.json",
 		"/Users/andy/Sites/calendar/calendar/calendar.sublime-project",
 		"/Users/andy/Sites/calendar/myDir/test.txt",
 		"/private/etc/apache2/httpd.conf",
@@ -716,29 +788,7 @@
 		"/Users/andy/Sites/uo-website-framework/src/partials/navigation/breadcrumbs.hbs",
 		"/Users/andy/Sites/uo-website-framework/src/partials/tiles/offering-tiles-a.hbs",
 		"/Users/andy/Sites/uo-website-framework/src/partials/hero/hero-image.hbs",
-		"/Users/andy/Downloads/bebas-font/stylesheet.css",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/highlight-promo.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/partials/highlight-promo/highlight-promo-header-cta.hbs",
-		"/Users/andy/Sites/uo-website-framework/uo-website-framework.sublime-project",
-		"/Users/andy/Sites/uo-website-framework/src/partials/highlight-promo/highlight-promo.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/fast-facts.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/partials/fast-facts/fast-facts-style-a.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/partials/fast-facts/fast-facts-style-b.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/partials/fast-facts/fast-facts-style-c.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/assets/styles/less/fast-facts.less",
-		"/Users/andy/Sites/uo-website-framework/src/assets/styles/less/lists.less",
-		"/Users/andy/Sites/uo-website-framework/src/assets/styles/less/page-header.less",
-		"/Users/andy/Sites/uo-website-framework/src/assets/scripts/modules/combine/gigya.js",
-		"/Users/andy/Sites/uo-website-framework/src/assets/styles/less/page-reviews-ratings.less",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/carousel-hero.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/carousel.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/hero.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/maps.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/page-header.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/promos.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/review-ratings.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/show-hide.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/trip-tips.hbs"
+		"/Users/andy/Downloads/bebas-font/stylesheet.css"
 	],
 	"find":
 	{
@@ -762,6 +812,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ˆ",
+			";\n",
+			"ele",
+			"numChil",
+			"data-calendar-day",
+			"$('*",
+			"$('*[",
+			"key",
+			"bindDate",
+			"loadCalendarData",
+			"datesLeng",
+			"loadCalendarData(",
+			"loadCalendarData",
+			"console.log",
+			"length",
+			"$groupInfo",
+			"viewGroups",
+			"fireUsers.push({",
+			"<div class=\"calendar-day calendar-cell\" data-calendar-day",
+			"data-calendar-day=\"0\"",
+			"<div class=\"calendar-day\"",
+			"styleshe",
 			"dayOfWeek",
 			"monthName",
 			"dateComponents",
@@ -867,29 +939,7 @@
 			".gig-button-container",
 			"slideout-s",
 			"header-title",
-			"page-title",
-			"header",
-			"page-title",
-			"title-cont",
-			"header-inn",
-			"#rating",
-			"ratings",
-			"star-ratings",
-			"gigya-rating",
-			"commentsContainer",
-			"ratings",
-			"header-content",
-			"+",
-			"header-content",
-			"{{>page-title content-into",
-			"page-title-content-no-aside",
-			"attr('checked",
-			"radio-promo-headline",
-			"has-value",
-			"date-re",
-			"hide",
-			"display",
-			"number-spinner-container"
+			"page-title"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -912,7 +962,7 @@
 			"control-info",
 			"input-large"
 		],
-		"reverse": false,
+		"reverse": true,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -921,23 +971,23 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 6,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "getDates.php",
+					"file": "calendar.html",
 					"settings":
 					{
-						"buffer_size": 3763,
+						"buffer_size": 11163,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								628,
-								628
+								436,
+								436
 							]
 						],
 						"settings":
@@ -990,28 +1040,29 @@
 								"bh_single_quote_open",
 								"bh_single_quote_close"
 							],
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1571.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "dates.json",
+					"file": "script.js",
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 19322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								10870,
+								10874
 							]
 						],
 						"settings":
@@ -1064,7 +1115,458 @@
 								"bh_single_quote_open",
 								"bh_single_quote_close"
 							],
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1665.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "landing.html",
+					"settings":
+					{
+						"buffer_size": 1028,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								564,
+								144
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "style.css",
+					"settings":
+					{
+						"buffer_size": 1603,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1031,
+								1031
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_name": "/* style.css */",
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "project_build/src/partials/header/header.hbs",
+					"settings":
+					{
+						"buffer_size": 625,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								593,
+								184
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "project_build/src/assets/styles/less/_variables.less",
+					"settings":
+					{
+						"buffer_size": 4924,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1259,
+								1259
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 719.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "project_build/src/assets/styles/less/header.less",
+					"settings":
+					{
+						"buffer_size": 561,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								525,
+								525
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 116.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "project_build/src/assets/styles/less/layout.less",
+					"settings":
+					{
+						"buffer_size": 3295,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24,
+								24
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1077,7 +1579,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"input":
 	{

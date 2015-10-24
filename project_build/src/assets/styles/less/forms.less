@@ -151,7 +151,7 @@ select,
 
 	&:hover,
 	&:focus {
-		border: 1px solid @brand-color-b;
+		border: 1px solid @brand-color-a;
 		outline: none;
 	}
 
@@ -700,18 +700,18 @@ input[type="checkbox"] {
 	&:hover,
 	input:focus + &,
 	input:active + & {
-		border-color: @brand-color-b;
+		border-color: @grey-a;
 	}
 
 	input[disabled] + & {
 		background: #f0f0f0;
-		border-color: @brand-color-f;
-		color: @brand-color-f;
+		border-color: @grey-a;
+		color: @grey-a;
 		cursor: not-allowed;
 
 		&:hover,
 		&:focus {
-			border-color: @brand-color-f;
+			border-color: @grey-a;
 		}
 	}
 
@@ -719,7 +719,7 @@ input[type="checkbox"] {
 
 		&:hover,
 		&:focus {
-			border-color: @brand-color-f;
+			border-color: @grey-a;
 		}
 	}
 }
@@ -743,8 +743,8 @@ input[type="checkbox"] {
 
 	input:checked + & {
 		color: #fff;
-		background: @brand-color-b;
-		border-color: @brand-color-b;
+		background: @brand-color-a;
+		border-color: @brand-color-a;
 
 		&:after {
 			display: block;
@@ -753,10 +753,10 @@ input[type="checkbox"] {
 
 	input[disabled] + & {
 		background: #f0f0f0;
-		border-color: @brand-color-f;
+		border-color: @grey-a;
 
 		&:after {
-			color: @brand-color-f;
+			color: @grey-a;
 		}
 	}
 
@@ -775,13 +775,13 @@ input[type="checkbox"] {
 		left: 7px;
 		width: 0;
 		height: 0;
-		background: @brand-color-b;
+		background: @brand-color-a;
 		border-radius: 100%;
 		transition: all 100ms;
 	}
 
 	input:checked + & {
-		border-color: @brand-color-b;
+		border-color: @brand-color-a;
 
 		&:after {
 			width: 14px;
@@ -794,7 +794,7 @@ input[type="checkbox"] {
 	input[disabled] + & {
 
 		&:after {
-			background: @brand-color-f;
+			background: @grey-a;
 		}
 	}
 
@@ -869,7 +869,7 @@ select,
 	max-width: 100%;
 	margin-top: @vr;
 	padding-top: @vr*2;
-	border-top: 1px solid @brand-color-f;
+	border-top: 1px solid @grey-a;
 
 	@media (min-width: @break-point-d) {
 		margin-top: @vr*2;

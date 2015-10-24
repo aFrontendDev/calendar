@@ -447,7 +447,7 @@ module.exports = function(grunt) {
 				}, {
 					expand: true,
 					cwd: '<%= config.src %>/<%= config.srcAssets %>/<%= config.srcFonts %>/',
-					src: ['**'],
+					src: ['**/*'],
 					dest: '<%= config.dist %>/<%= config.distStyles %>/<%= config.distFonts %>/'
 				}, {
 					expand: true,

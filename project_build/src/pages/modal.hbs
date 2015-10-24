@@ -7,17 +7,13 @@ showFooter: true
 
 {{#extend "layout-a"}}
 	{{#content "region-a"}}
-    <p>
-      <a href="#" class="js-modal-open" data-video-id="playerfqBHraXTyDhy" data-video-setup='{
-        "file": "http://cb7ac68ca1a211976274-c7e2f069aa87df9351c388736df237ff.r83.cf1.rackcdn.com/ELEMENT_A&D_720_x264.mp4",
-        "image": "http://www.element.com/images/landing-page-images/industry_aerospace.jpg",
-        "width": "100%",
-        "aspectratio": "16:9"
-        }'
-  		>Click to enable video modal.
-  		<div class="modal-content"></div>
-  	</a>
+	<p>
+    <a href="#" class="js-modal-open modal-ajax"
+      data-modal="true"
+      data-endpoint="http://calendar.local.andyblackledge.co.uk/project_build/dist/calendar-app_modal-login.html"
+    >
+      Click to enable a basic modal.
+    </a>
   </p>
-	<p><a href="#" class="js-modal-open">Click to enable a basic modal.<span class="modal-content"><img src="http://placehold.it/1200x600/333333/BFCBF3"></span></a></p>
 	{{/content}}
 {{/extend}}

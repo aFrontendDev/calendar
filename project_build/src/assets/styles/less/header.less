@@ -2,10 +2,13 @@
 
 .header {
 	position: relative;
-	margin: @vr*2 @ggw/2;
+	padding: @vr*2 @ggw/2;
+	margin: 0;
+	background-color: @brand-color-a;
+	//color: @brand-color-b;
+	color: #fff;
 
 	@media @BPC {
-		margin: 0;
 		position: fixed;
 		top: 0;
 		left:0;
@@ -32,6 +35,7 @@
 	font-size: 20px;
 	line-height: @vr*4;
 	margin: 0;
+	text-shadow: -2px 2px 3px rgba(0,0,0,0.7);
 
 	@media @BPC {
 		font-size: 66px;
@@ -43,9 +47,13 @@
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	right: 0;
+	right: @ggw/2;
 
 	@media @BPC {
 		right: @ggw;
+	}
+
+	.icon {
+		font-size: 45px;
 	}
 }

@@ -5,11 +5,29 @@
     transform: translate(0%, -50%);
     min-width: 100%;
     max-width: 100%;
-    height: auto;
-    z-index: 100;
+    //height: auto;
+    z-index: 9002;
     display: none;
-    opacity:0;
+    opacity: 0;
     text-align: center;
+    transition: opacity 150ms ease-in-out;
+    height: 100%;
+    overflow-y: auto;
+    padding: @vr*5 0;
+    z-index: -1;
+
+    @media @BPF {
+        // margin: @vr*6 @ggw @vr @ggw;
+    }
+
+    &.modal-in {
+        display: block;
+        z-index: 9999;
+    }
+
+    &.modal-show {
+        opacity: 1;
+    }
 }
 
 .modal-content {
@@ -17,31 +35,42 @@
 }
 
 .modal-inner {
+    display: inline-block;
+    position: relative;
     max-width: 980px;
     margin: auto;
-    padding:30px 30px;
-    position: relative;
+    height: auto;
+    width: auto;
+
+    img {
+        max-width: 100%;
+        max-height: 80%;
+        height: auto;
+    }
 }
 
-.modal-close-x {
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    font-size: 17px;
+.modal-inner-content {
+    height: 100%;
+    width: auto;
+    padding: 30px @ggw 30px;
+    color: #fff;
+}
+
+.modal-close {
+    position: relative;
+    font-size: 50px;
     color: #fff;
     cursor: pointer;
-    opacity:.95;
-    z-index: 101;
+    z-index: 99999;
+    opacity: 1;
     display: none;
+    transition: opacity 150ms ease-in-out;
 
-    &:hover {
-        opacity:1;
+    .icon {
     }
 
-    @media (min-width: @break-point-c) {
-        top: 30px;
-        right: 30px;
-        font-size: 38px;
+    .modal-in & {
+        display: block;
     }
 }
 
@@ -52,10 +81,10 @@
     text-align: center;
     padding-top:10px 0;
     cursor: pointer;
-    opacity:.95;
+    opacity:1;
 
     &:hover {
-        opacity:1;
+        opacity: .80;
     }
 
     @media (min-width: @break-point-c) {
@@ -64,7 +93,7 @@
 }
 
 .modal-background {
-    .rgba-bg(#001025, 0.9);
+    .rgba-bg(#000000, 0.9);
     height: 100%;
     width: 100%;
     position: fixed;
@@ -72,20 +101,16 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 99;
+    z-index: 9000;
     display: none;
     opacity: 0;
-    // transition: opacity 500ms linear;
+    transition: opacity 100ms linear;
+
     &.modal-in {
         display: block;
     }
-}
 
-.modal.modal-in {
-    display: block;
-
-    &+ .modal-close-x {
-        display: block;
+    &.modal-show {
+        opacity: 1;
     }
-
 }
