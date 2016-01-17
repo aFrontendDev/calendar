@@ -520,67 +520,10 @@
 	"buffers":
 	[
 		{
-			"file": "calendar.html",
+			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 11163,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "script.js",
-			"settings":
-			{
-				"buffer_size": 19322,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "landing.html",
-			"settings":
-			{
-				"buffer_size": 1028,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "style.css",
-			"settings":
-			{
-				"buffer_size": 1603,
-				"line_ending": "Unix",
-				"name": "/* style.css */"
-			}
-		},
-		{
-			"file": "project_build/src/partials/header/header.hbs",
-			"settings":
-			{
-				"buffer_size": 625,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "project_build/src/assets/styles/less/_variables.less",
-			"settings":
-			{
-				"buffer_size": 4924,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "project_build/src/assets/styles/less/header.less",
-			"settings":
-			{
-				"buffer_size": 561,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "project_build/src/assets/styles/less/layout.less",
-			"settings":
-			{
-				"buffer_size": 3295,
+				"buffer_size": 16,
 				"line_ending": "Unix"
 			}
 		}
@@ -661,6 +604,14 @@
 	},
 	"file_history":
 	[
+		"/Users/ablackledge/Sites/calendar/calendar.html",
+		"/Users/ablackledge/Sites/calendar/script.js",
+		"/Users/ablackledge/Sites/calendar/landing.html",
+		"/Users/ablackledge/Sites/calendar/style.css",
+		"/Users/ablackledge/Sites/calendar/project_build/src/partials/header/header.hbs",
+		"/Users/ablackledge/Sites/calendar/project_build/src/assets/styles/less/_variables.less",
+		"/Users/ablackledge/Sites/calendar/project_build/src/assets/styles/less/header.less",
+		"/Users/ablackledge/Sites/calendar/project_build/src/assets/styles/less/layout.less",
 		"/Users/andy/Sites/calendar/calendar/project_build/src/partials/footer/footer.hbs",
 		"/Users/andy/Sites/calendar/calendar/project_build/src/assets/styles/less/icons.less",
 		"/Users/andy/Sites/calendar/calendar/project_build/src/assets/styles/less/_order.less",
@@ -780,15 +731,7 @@
 		"/Users/andy/Sites/uo-website-framework/src/partials/page-title/page-title.hbs",
 		"/Users/andy/Sites/uo-website-framework/src/assets/styles/less/highlight-promo.less",
 		"/Users/andy/Sites/uo-website-framework/src/assets/scripts/modules/combine/style-datepicker.js",
-		"/Users/andy/Sites/uo-website-framework/src/assets/styles/less/header-widget.less",
-		"/Users/andy/Sites/uo-website-framework/src/assets/styles/less/breadcrumbs.less",
-		"/Users/andy/Sites/uo-website-framework/src/pages/component/breadcrumbs.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/data/components/breadcrumbs.json",
-		"/Users/andy/Sites/uo-website-framework/src/pages/k2/the-incredible-hulk-coaster.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/partials/navigation/breadcrumbs.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/partials/tiles/offering-tiles-a.hbs",
-		"/Users/andy/Sites/uo-website-framework/src/partials/hero/hero-image.hbs",
-		"/Users/andy/Downloads/bebas-font/stylesheet.css"
+		"/Users/andy/Sites/uo-website-framework/src/assets/styles/less/header-widget.less"
 	],
 	"find":
 	{
@@ -971,23 +914,23 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "calendar.html",
+					"file": "README.md",
 					"settings":
 					{
-						"buffer_size": 11163,
+						"buffer_size": 16,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								436,
-								436
+								16,
+								16
 							]
 						],
 						"settings":
@@ -1040,533 +983,11 @@
 								"bh_single_quote_open",
 								"bh_single_quote_close"
 							],
-							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "script.js",
-					"settings":
-					{
-						"buffer_size": 19322,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10870,
-								10874
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1665.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "landing.html",
-					"settings":
-					{
-						"buffer_size": 1028,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								564,
-								144
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "style.css",
-					"settings":
-					{
-						"buffer_size": 1603,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1031,
-								1031
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_name": "/* style.css */",
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "project_build/src/partials/header/header.hbs",
-					"settings":
-					{
-						"buffer_size": 625,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								593,
-								184
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "project_build/src/assets/styles/less/_variables.less",
-					"settings":
-					{
-						"buffer_size": 4924,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1259,
-								1259
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/LESS/LESS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 719.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "project_build/src/assets/styles/less/header.less",
-					"settings":
-					{
-						"buffer_size": 561,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								525,
-								525
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 116.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "project_build/src/assets/styles/less/layout.less",
-					"settings":
-					{
-						"buffer_size": 3295,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								24,
-								24
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"trim_trailing_white_space_on_save": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
