@@ -7,7 +7,8 @@
   "author": "aFrontendDev <blackledge22@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
   },
   "dependencies": {
     "css-loader": "^0.28.4",
