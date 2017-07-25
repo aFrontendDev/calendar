@@ -15,16 +15,26 @@ import Calendar from './pages/calendar';
 export default class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="wrapper">
+        <div className="menu">
+          <ul className="nav">
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+          </ul>
+        </div>
+        
         <Header />
 
         <main className="main" id="main">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/profile" component={User} />
-            <Route path="/calendar/:calId" component={Calendar} />
-            <Route component={Home} />
-          </Switch>
+          <div className="layout layout--a">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/profile" component={User} />
+              <Route path="/calendar/:calId" component={Calendar} />
+              <Route component={Home} />
+            </Switch>
+          </div>
         </main>
 
         <Footer />

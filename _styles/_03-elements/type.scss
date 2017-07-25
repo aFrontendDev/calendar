@@ -10,7 +10,8 @@ h6 {
 	margin-top: 0;
 	color: $brand-black;
 	margin-bottom: 0;
-
+	font-family: $font-family-display;
+	
 	.styleguide-page & {
 		margin-bottom: $vr*3;
 	}

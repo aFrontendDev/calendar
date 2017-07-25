@@ -19,9 +19,9 @@
 }
 
 // Primary Palette
-$primary-color-a: #ED1C24;; // red
-$primary-color-b: #00A650; // green
-$primary-color-c: #2056AE; // blue
+$primary-color-a: #3ca0f7;; // light blue
+$primary-color-b: #f93467; // light red
+$primary-color-c: #56dc48; // light green
 $primary-color-d: #FABC09; // yellow
 
 
@@ -70,6 +70,7 @@ $vr: $vertical-rhythm; // Alias
 $font-family-sans-serif: sans-serif;
 $font-family-serif: 'Georgia Pro', Georgia, Times, serif;
 $font-family-mono: 'Anonymous Pro', 'Droid Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, 'Lucida Console', Courier, monospace;
+$font-family-display: 'Fredoka One', sans-serif;
 
 $font-family-base: $font-family-sans-serif;
 
