@@ -7,7 +7,6 @@
   padding: $vr*2 $ggw;
   padding-left: 15px;
   border-bottom: solid 2px $primary-color-a;
-  margin-bottom: $vr*2;
 
   @media #{$BPC} {
     justify-content: center;
@@ -57,8 +56,9 @@
   right: 0;
   transform: translateX(-101%);
   transition: transform 300ms ease-in-out;
+  z-index: 9;
 
-  .menu-in & {
+  &.menu--in {
     transform: none;
   }
 }

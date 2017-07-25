@@ -13,18 +13,31 @@ import User from './pages/user';
 import Calendar from './pages/calendar';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.menuClick = this.menuClick.bind(this);
+  }
+
+  menuClick(v) {
+    // switch menu-in state from true to false
+    this.props.onMenuAction(v);
+  }
+
   render() {
+    let menuIn = this.props.menuIsIn ? 'menu--in' : '';
+
     return (
       <div className="wrapper">
-        <div className="menu">
+
+        <div className={'menu ' + menuIn}>
           <ul className="nav">
             <li>one</li>
             <li>two</li>
             <li>three</li>
           </ul>
         </div>
-        
-        <Header />
+
+        <Header menuAction={this.menuClick} />
 
         <main className="main" id="main">
           <div className="layout layout--a">
@@ -42,3 +55,8 @@ export default class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  menuIsIn: React.PropTypes.bool,
+  onMenuAction: React.PropTypes.func
+};
