@@ -3,9 +3,10 @@ import {
   Switch, Route
 } from 'react-router-dom';
 
-// header and footer to be included on every page
+// menu, header and footer to be included on every page
 import Header from './components/_header/header.jsx';
 import Footer from './components/_footer/footer.jsx';
+import Menu from './components/menu.jsx';
 
 // Pages
 import Home from './pages/home';
@@ -24,18 +25,11 @@ export default class App extends React.Component {
   }
 
   render() {
-    let menuIn = this.props.menuIsIn ? 'menu--in' : '';
 
     return (
       <div className="wrapper">
 
-        <div className={'menu ' + menuIn}>
-          <ul className="nav">
-            <li>one</li>
-            <li>two</li>
-            <li>three</li>
-          </ul>
-        </div>
+        <Menu menuIsIn={this.props.menuIsIn} onMenuAction={this.props.onMenuAction} />
 
         <Header menuAction={this.menuClick} />
 

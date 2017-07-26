@@ -14,15 +14,6 @@ class Header extends React.Component {
     this.props.menuAction();
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      const _Header = document.querySelector('.header');
-      const headerHeight = _Header.offsetHeight;
-      const _Menu = document.querySelector('.menu');
-      _Menu.style.top = headerHeight + 'px';
-    }, 100);
-  }
-
   render() {
     return (
       <header className="header" id="header" role="banner" itemScope itemType="http://schema.org/WPHeader">
