@@ -11,7 +11,7 @@ import Menu from './components/menu.jsx';
 // Pages
 import Home from './pages/home';
 import User from './pages/user';
-import Calendar from './pages/calendar';
+import CalendarPage from './pages/calendar';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ export default class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/profile" component={User} />
-              <Route path="/calendar/:calId" component={Calendar} />
+              <Route path="/calendar/:calId" component={CalendarPage} />
               <Route component={Home} />
             </Switch>
           </div>

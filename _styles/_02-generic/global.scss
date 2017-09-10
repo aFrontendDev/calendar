@@ -16,6 +16,7 @@ html {
 	font-size: 100%;
 	background: #fff;
 	height: 100%;
+	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -109,4 +110,9 @@ img {
 		float: left;
 		margin-right: 5px;
 	}
+}
+
+abbr[title] {
+	border: none;
+	text-decoration: none;
 }
