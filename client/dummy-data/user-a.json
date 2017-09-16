@@ -1,0 +1,14 @@
+{
+  "id": "abc123",
+  "name": "Andy Blackledge",
+  "calendars": [
+    {
+      "id": "calabc123",
+      "datesSelected": [
+        "2017-09-08",
+        "2017-09-13",
+        "2017-09-20"
+      ]
+    }
+  ]
+}

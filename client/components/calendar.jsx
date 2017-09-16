@@ -9,6 +9,8 @@ class Calendar extends React.Component {
     this.state = {
       month: null,
       calendar: null,
+      user: null,
+      userCalendar: null,
       emptyDays: null,
       remainingEmptyDaysArray: null,
       dayKey: {
@@ -26,14 +28,17 @@ class Calendar extends React.Component {
     this.setEmptyDays = this.setEmptyDays.bind(this);
     this.setRemainingEmptyDays = this.setRemainingEmptyDays.bind(this);
     this.hasBeenAdded = this.hasBeenAdded.bind(this);
+    this.setUserCalendar = this.setUserCalendar.bind(this);
   }
 
 
   setData() {
     this.setState({
       calendar: this.props.calendar,
-      month: this.props.month
+      month: this.props.month,
+      user: this.props.user
     }, () => {
+      this.setUserCalendar();
       this.setEmptyDays();
       this.setRemainingEmptyDays();
     });
@@ -61,6 +66,18 @@ class Calendar extends React.Component {
     this.setState({
       remainingEmptyDaysArray: remainingEmptyDaysArray
     });
+  }
+
+  setUserCalendar() {
+    const calId = this.state.calendar.id;
+
+    for (const calendar of this.state.user.calendars) {
+      if (calendar.id === calId) {
+        this.setState({
+          userCalendar: calendar
+        });
+      }
+    }
   }
 
   hasBeenAdded(day) {
@@ -140,6 +157,7 @@ class Calendar extends React.Component {
                               let allAddedClass = '';
                               let atLeaseOneClass = '';
                               let numberAdded = null;
+                              const userHasAdded = this.state.userCalendar.datesSelected.includes(item.date);
 
                               if (matchedDate) {
                                 allAddedClass = matchedDate.numberSelected === totalMembers ? ' day--all-added ' : '';
@@ -151,7 +169,9 @@ class Calendar extends React.Component {
                                 <div data-cal-date={item.date} key={index} className={"day " + allAddedClass + atLeaseOneClass} role="gridcell">
                                   <span className="day__number">{item.dateDay}</span>
                                   {numberAdded ? <span className="day__amount-selected">{numberAdded}</span> : null}
-                                  <button className="btn--unstyled day__btn">+</button>
+                                  <button className="btn--unstyled day__btn">
+                                  {userHasAdded ? '-' : '+'}
+                                  </button>
                                 </div>
                               )
                             })
@@ -188,7 +208,8 @@ class Calendar extends React.Component {
 
 Calendar.propTypes = {
   calendar: React.PropTypes.object.isRequired,
-  month: React.PropTypes.object.isRequired
+  month: React.PropTypes.object.isRequired,
+  user: React.PropTypes.object.isRequired
 };
 
 export default Calendar;

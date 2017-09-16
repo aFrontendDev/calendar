@@ -20,6 +20,7 @@
   display: flex;
   justify-content: space-between;
   background-color: $primary-color-a;
+  overflow: hidden;
 
   &.day--added {
     background-color: $primary-color-e;
@@ -59,4 +60,10 @@
   z-index: 1;
   display: block;
   color: $brand-white;
+  transition: transform 250ms ease;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.5);
+  }
 }
