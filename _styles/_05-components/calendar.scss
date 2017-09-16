@@ -17,7 +17,37 @@
 }
 
 .day {
+  display: flex;
+  justify-content: space-between;
   background-color: $primary-color-a;
+
+  &.day--added {
+    background-color: $primary-color-e;
+  }
+
+  &.day--all-added {
+    background-color: $primary-color-c;
+  }
+}
+
+.day__amount-selected {
+  position: relative;
+  z-index: 2;
+  color: $brand-black;
+
+  &:after {
+    content: '';
+    position: absolute;
+    background-color: $brand-white;
+    display: inline-block;
+    border-radius: 100%;
+    padding: 12px;
+    left: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    margin-top: -1px;
+  }
 }
 
 .day__btn {
