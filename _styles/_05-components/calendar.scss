@@ -6,7 +6,6 @@
   width: 100%;
 }
 
-.day,
 .day-header {
   position: relative;
   flex: 1;
@@ -16,10 +15,20 @@
   color: $brand-white;
 }
 
-.day {
+.dates {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.day {
+  position: relative;
+  width: calc(100% / 7);
+  padding: 10px;
+  margin: 0;
+  border: solid $brand-white;
   background-color: $primary-color-a;
+  color: $brand-white;
   overflow: hidden;
 
   &.day--added {
@@ -29,6 +38,13 @@
   &.day--all-added {
     background-color: $primary-color-c;
   }
+}
+
+.day__inner {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 10px;
 }
 
 .day__amount-selected {
@@ -60,10 +76,18 @@
   z-index: 1;
   display: block;
   color: $brand-white;
-  transition: transform 250ms ease;
+  
+  svg {
+    fill: #fff;
+    width: 12px;
+    transition: transform 250ms ease;
+  }
 
   &:hover,
   &:focus {
-    transform: scale(1.5);
+
+    svg {
+      transform: scale(1.1) rotate(15deg);
+    }
   }
 }

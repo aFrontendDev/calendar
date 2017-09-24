@@ -11,7 +11,10 @@
     "build": "webpack -p"
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.18.2",
     "css-loader": "^0.28.4",
+    "express": "^4.15.4",
     "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.29.0",
     "node-sass": "^4.5.3",
