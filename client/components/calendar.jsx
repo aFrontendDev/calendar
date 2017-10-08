@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import axios from 'axios';
+
 class Calendar extends React.Component {
 
   constructor(props) {
@@ -8,6 +10,8 @@ class Calendar extends React.Component {
 
     this.state = {
       month: null,
+      selectedMonth: null,
+      selectedYear: null,
       calendar: null,
       user: null,
       userCalendar: null,
@@ -27,14 +31,61 @@ class Calendar extends React.Component {
     this.setData = this.setData.bind(this);
     this.hasBeenAdded = this.hasBeenAdded.bind(this);
     this.setUserCalendar = this.setUserCalendar.bind(this);
+    this.getMonth = this.getMonth.bind(this);
+    this.prevMonth = this.prevMonth.bind(this);
+    this.nextMonth = this.nextMonth.bind(this);
   }
 
+  getMonth(month, year) {
+    let monthNum, yearNum;
+    monthNum = month
+    yearNum = year;
+
+    if (monthNum && yearNum) {
+
+      axios
+      .get(`http://127.0.0.1:4000/getMonth?month=${monthNum}&year=${yearNum}`)
+      .then(res => {
+        const data = res.data;
+
+        this.setState({
+          month: data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    } else {
+      console.log('no date');
+    }
+  }
+
+  prevMonth() {
+    let newMonth, newYear;
+    const currentMonth = this.state.selectedMonth;
+    const currentYear = this.state.selectedYear;
+    this.props.calPrevAction({currentMonth, currentYear});
+  }
+
+  nextMonth() {
+    let newMonth, newYear;
+    const currentMonth = this.state.selectedMonth;
+    const currentYear = this.state.selectedYear;
+    this.props.calNextAction({currentMonth, currentYear});
+  }
 
   setData(props) {
+    if (this.props.date) {
+      this.setState({
+        selectedMonth: this.props.date.currentMonth,
+        selectedYear: this.props.date.currentYear
+      });
+
+      this.getMonth(this.props.date.currentMonth, this.props.date.currentYear);
+    }
 
     this.setState({
       calendar: props.calendar,
-      month: props.month,
       user: props.user
     }, () => {
       this.setUserCalendar();
@@ -70,7 +121,12 @@ class Calendar extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-		this.setData(newProps);
+
+    this.setState({
+      selectedMonth: newProps.date.currentMonth,
+      selectedYear: newProps.date.currentYear
+    });
+    this.getMonth(newProps.date.currentMonth, newProps.date.currentYear);
   }
 
   render() {
@@ -88,6 +144,15 @@ class Calendar extends React.Component {
             <h2 className="calendar__title">{calendar.title}</h2>
           </header>
           <div className="calendar__body">
+            <div className="calendar__actions">
+              <button className="btn--unstyled month__btn-prev" onClick={this.prevMonth}>
+                PREV
+              </button>
+              <button className="btn--unstyled month__btn-next" onClick={this.nextMonth}>
+                NEXT
+              </button>
+            </div>
+
             <article className="month" aria-label="month">
               <header className="month__header">
                 <h3 className="month__title">{month.title}</h3>
@@ -157,8 +222,10 @@ class Calendar extends React.Component {
 
 Calendar.propTypes = {
   calendar: React.PropTypes.object.isRequired,
-  month: React.PropTypes.object.isRequired,
-  user: React.PropTypes.object.isRequired
+  user: React.PropTypes.object.isRequired,
+  calNextAction: React.PropTypes.func.isRequired,
+  calPrevAction: React.PropTypes.func.isRequired,
+  date: React.PropTypes.object,
 };
 
 export default Calendar;

@@ -19,6 +19,10 @@ export default class App extends React.Component {
     this.menuClick = this.menuClick.bind(this);
   }
 
+  componentDidMount() {
+    console.log(this.props.date);
+  }
+
   menuClick(v) {
     // switch menu-in state from true to false
     this.props.onMenuAction(v);
@@ -38,7 +42,9 @@ export default class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/profile" component={User} />
-              <Route path="/calendar/:calId" component={CalendarPage} />
+              <Route path="/calendar/:calId" render={(props) => (
+                <CalendarPage {...props} date={this.props.date} calNextAction={this.props.onCalNextAction} calPrevAction={this.props.onCalPrevAction} />
+              )} />
               <Route component={Home} />
             </Switch>
           </div>
@@ -52,5 +58,8 @@ export default class App extends React.Component {
 
 App.propTypes = {
   menuIsIn: React.PropTypes.bool,
-  onMenuAction: React.PropTypes.func
+  onMenuAction: React.PropTypes.func,
+  onCalNextAction: React.PropTypes.func,
+  onCalPrevAction: React.PropTypes.func,
+  onCalSetDate: React.PropTypes.func
 };
