@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const functions = require('../web_service/functions');
+const firebase = require('./firebase');
 const app = express();
 
 //  Middle-ware for handling post requests
@@ -30,6 +31,13 @@ app.get('/getMonth', function (req, res) {
   const data = functions.getMonth(req.query.year, req.query.month);
   // console.log(data);
   res.send(data);
+});
+
+app.get('/signup', function (req, res) {
+  firebase.initFirebase(); // temp, need to start this myself
+  
+  // Need to securely pass these details to this url
+  res.send(firebase.signUp('test@test.com', 'password123'));
 });
 
 app.get('/test', function (req, res) {

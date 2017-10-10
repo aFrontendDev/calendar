@@ -27,6 +27,8 @@ Thumbs.db
 bower_components
 node_modules
 
+#private
+web_service/private-config.js
+
 # generated components
 dist
-src/assets/styles/less/_mixins/_combined.less
