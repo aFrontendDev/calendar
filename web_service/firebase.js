@@ -19,11 +19,14 @@ module.exports = {
   },
 
   signUp(email, password) {
+    console.log('fb');
+    console.log(email);
+    console.log(password);
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
       // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
     });
   }
 

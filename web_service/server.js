@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 const functions = require('../web_service/functions');
 const firebase = require('./firebase');
 const app = express();
@@ -33,11 +33,19 @@ app.get('/getMonth', function (req, res) {
   res.send(data);
 });
 
-app.get('/signup', function (req, res) {
-  firebase.initFirebase(); // temp, need to start this myself
-  
-  // Need to securely pass these details to this url
-  res.send(firebase.signUp('test@test.com', 'password123'));
+app.get('/startfb', function (req, res) {
+  firebase.initFirebase();
+  res.send('done');
+});
+
+app.post('/signup', function (req, res) {
+  const password = req.body.password;
+  const email = req.body.email;
+  console.log(email);
+  console.log(password);
+
+  firebase.signUp(email, password);
+  res.sendStatus(200);
 });
 
 app.get('/test', function (req, res) {
