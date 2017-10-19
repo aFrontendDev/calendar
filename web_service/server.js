@@ -33,19 +33,23 @@ app.get('/getMonth', function (req, res) {
   res.send(data);
 });
 
-app.get('/startfb', function (req, res) {
-  firebase.initFirebase();
-  res.send('done');
-});
+// app.get('/startfb', function (req, res) {
+//   firebase.initFirebase();
+//   res.send('done');
+// });
 
 app.post('/signup', function (req, res) {
   const password = req.body.password;
   const email = req.body.email;
-  console.log(email);
-  console.log(password);
 
-  firebase.signUp(email, password);
-  res.sendStatus(200);
+  firebase.signUp(email, password).then(function(fulfilled) {
+    console.log(fulfilled);
+    res.sendStatus(200);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).send(error);
+  });
 });
 
 app.get('/test', function (req, res) {
@@ -56,5 +60,8 @@ app.get('/test', function (req, res) {
 
 
 // START *** Use Express to listen to port
-app.listen(4000, '127.0.0.1');
+app.listen(4000, '127.0.0.1', function () {
+  firebase.initFirebase();
+  console.log('init');
+});
 // END *****

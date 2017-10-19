@@ -13,20 +13,29 @@ const config = {
 };
 
 module.exports = {
-  
+
   initFirebase() {
     firebase.initializeApp(config);
   },
 
   signUp(email, password) {
-    console.log('fb');
-    console.log(email);
-    console.log(password);
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
+    let errored = false;
+
+    return new Promise(function(resolve, reject) {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        errored = true;
+        reject(errorMessage);
+      })
+      .then(function (e) {
+
+        if (!errored) {
+          resolve('success');
+        }
+      });
     });
   }
 

@@ -30,8 +30,8 @@ class Home extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.email);
-    console.log(this.state.password);
+    // console.log(this.state.email);
+    // console.log(this.state.password);
 
     axios
       .post(`http://127.0.0.1:4000/signup`, {
@@ -43,6 +43,7 @@ class Home extends React.Component {
       })
       .catch((error) => {
         console.log(error);
+        console.log(error.response);
       });
   }
 
