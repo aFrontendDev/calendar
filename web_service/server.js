@@ -29,14 +29,8 @@ app.get('/getMonth', function (req, res) {
   }
 
   const data = functions.getMonth(req.query.year, req.query.month);
-  // console.log(data);
   res.send(data);
 });
-
-// app.get('/startfb', function (req, res) {
-//   firebase.initFirebase();
-//   res.send('done');
-// });
 
 app.post('/signup', function (req, res) {
   const password = req.body.password;
@@ -50,6 +44,12 @@ app.post('/signup', function (req, res) {
     console.log(error);
     res.status(500).send(error);
   });
+});
+
+app.get('/currentUser', function (req, res) {
+  const user = firebase.currentUser();
+  console.log(user);
+  res.send(user);
 });
 
 app.get('/test', function (req, res) {

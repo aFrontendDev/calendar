@@ -37,6 +37,13 @@ module.exports = {
         }
       });
     });
-  }
+  },
+
+  currentUser() {
+    const user = firebase.auth().currentUser;
+    console.log('fb user');
+    console.log(user);
+    return user;
+  },
 
 };
