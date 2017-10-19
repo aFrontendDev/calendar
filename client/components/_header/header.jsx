@@ -29,7 +29,7 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  menuAction: React.PropTypes.func.isRequired,
+  menuAction: PropTypes.func.isRequired,
 };
 
 export default Header;

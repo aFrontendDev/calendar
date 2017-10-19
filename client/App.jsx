@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Switch, Route
 } from 'react-router-dom';
@@ -57,9 +58,9 @@ export default class App extends React.Component {
 }
 
 App.propTypes = {
-  menuIsIn: React.PropTypes.bool,
-  onMenuAction: React.PropTypes.func,
-  onCalNextAction: React.PropTypes.func,
-  onCalPrevAction: React.PropTypes.func,
-  onCalSetDate: React.PropTypes.func
+  menuIsIn: PropTypes.bool,
+  onMenuAction: PropTypes.func,
+  onCalNextAction: PropTypes.func,
+  onCalPrevAction: PropTypes.func,
+  onCalSetDate: PropTypes.func
 };

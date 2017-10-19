@@ -32,9 +32,9 @@ class CalendarPage extends React.Component {
 }
 
 CalendarPage.propTypes = {
-  calNextAction: React.PropTypes.func.isRequired,
-  calPrevAction: React.PropTypes.func.isRequired,
-  date: React.PropTypes.object
+  calNextAction: PropTypes.func.isRequired,
+  calPrevAction: PropTypes.func.isRequired,
+  date: PropTypes.object
 };
 
 export default CalendarPage;

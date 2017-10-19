@@ -78,8 +78,8 @@ class Menu extends React.Component {
 }
 
 Menu.propTypes = {
-  menuIsIn: React.PropTypes.bool,
-  onMenuAction: React.PropTypes.func.isRequired
+  menuIsIn: PropTypes.bool,
+  onMenuAction: PropTypes.func.isRequired
 };
 
 export default Menu;

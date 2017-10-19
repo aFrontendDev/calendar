@@ -221,11 +221,11 @@ class Calendar extends React.Component {
 }
 
 Calendar.propTypes = {
-  calendar: React.PropTypes.object.isRequired,
-  user: React.PropTypes.object.isRequired,
-  calNextAction: React.PropTypes.func.isRequired,
-  calPrevAction: React.PropTypes.func.isRequired,
-  date: React.PropTypes.object,
+  calendar: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  calNextAction: PropTypes.func.isRequired,
+  calPrevAction: PropTypes.func.isRequired,
+  date: PropTypes.object,
 };
 
 export default Calendar;
