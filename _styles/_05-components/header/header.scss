@@ -1,0 +1,64 @@
+// header 
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $vr*2 $ggw;
+  padding-left: 15px;
+  border-bottom: solid 2px $primary-color-a;
+
+  @media #{$BPC} {
+    justify-content: center;
+  }
+}
+
+.header__title,
+.header__title a {
+  color: $primary-color-a;
+
+  span {
+    color: $primary-color-b;
+  }
+
+  @media #{$BPC} {
+    margin-right: auto;
+  }
+}
+
+.header__menu-btn {
+  padding-top: 3px;
+  color: $primary-color-a;
+
+  @media #{$BPC} {
+    margin-right: auto;
+  }
+
+  svg {
+    vertical-align: top;
+    fill: $primary-color-a;
+    width: 24px;
+    height: 24px;
+
+    @media #{$BPE} {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
+.menu {
+  position: fixed;
+  background-color: $brand-white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateX(-101%);
+  transition: transform 300ms ease-in-out;
+  z-index: 9;
+
+  &.menu--in {
+    transform: none;
+  }
+}

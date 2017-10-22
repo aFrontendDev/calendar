@@ -1,0 +1,22 @@
+// layout.scss
+
+.page {
+}
+
+.main {
+	overflow: hidden;
+	position: relative;
+	flex: 1;
+	padding-top: $vr*2;
+}
+
+.layout--a {
+	@include clearfix();
+	position: relative;
+	margin: 0 $ggw;
+	max-width: $max-width;
+
+	@media #{$BPF} {
+		margin: 0 auto;
+	}
+}
