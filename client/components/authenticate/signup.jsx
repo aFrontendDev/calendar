@@ -41,7 +41,7 @@ class SignUp extends React.Component {
       })
       .then(res => {
         console.log(res);
-        this.currentUser();
+        // this.currentUser();
       })
       .catch((error) => {
         console.log(error);
@@ -50,16 +50,18 @@ class SignUp extends React.Component {
   }
 
   currentUser() {
-    axios
-      .get(`http://127.0.0.1:4000/currentUser`)
-      .then(res => {
-        const user = res.data;
-        console.log(user);
-        console.log(user.uid);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // const user = dispatch(this.props.getCurrentUser());
+    // console.log(user);
+    // axios
+    //   .get(`http://127.0.0.1:4000/currentUser`)
+    //   .then(res => {
+    //     const user = res.data;
+    //     console.log(user);
+    //     console.log(user.uid);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   render() {
@@ -90,6 +92,7 @@ class SignUp extends React.Component {
 }
 
 SignUp.propTypes = {
+  getCurrentUser: PropTypes.func.isRequired
 };
 
 export default SignUp;

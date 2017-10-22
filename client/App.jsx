@@ -21,7 +21,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.date);
+    // console.log(this.props.date);
   }
 
   menuClick(v) {
@@ -41,12 +41,19 @@ export default class App extends React.Component {
         <main className="main" id="main">
           <div className="layout layout--a">
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" render={(props) => (
+                <Home {...props} getCurrentUser={this.props.onGetCurrentUser} />
+              )} />
+
               <Route path="/profile" component={User} />
+
               <Route path="/calendar/:calId" render={(props) => (
                 <CalendarPage {...props} date={this.props.date} calNextAction={this.props.onCalNextAction} calPrevAction={this.props.onCalPrevAction} />
               )} />
-              <Route component={Home} />
+
+              <Route render={(props) => (
+                <Home {...props} user={this.props.user} getCurrentUser={this.props.onGetCurrentUser} />
+              )} />
             </Switch>
           </div>
         </main>
@@ -62,5 +69,6 @@ App.propTypes = {
   onMenuAction: PropTypes.func,
   onCalNextAction: PropTypes.func,
   onCalPrevAction: PropTypes.func,
-  onCalSetDate: PropTypes.func
+  onCalSetDate: PropTypes.func,
+  onGetCurrentUser: PropTypes.func
 };
