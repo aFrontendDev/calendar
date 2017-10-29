@@ -21,12 +21,18 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    this.props.onGetCurrentUser();
     // console.log(this.props.date);
   }
 
   menuClick(v) {
     // switch menu-in state from true to false
     this.props.onMenuAction(v);
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log('app.jsx newProps');
+    console.log(newProps);
   }
 
   render() {
@@ -42,7 +48,7 @@ export default class App extends React.Component {
           <div className="layout layout--a">
             <Switch>
               <Route exact path="/" render={(props) => (
-                <Home {...props} getCurrentUser={this.props.onGetCurrentUser} />
+                <Home {...props} user={this.props.user} signoutUser={this.props.onSignoutUser} getCurrentUser={this.props.onGetCurrentUser} signinUser={this.props.onSigninUser} />
               )} />
 
               <Route path="/profile" component={User} />
@@ -52,7 +58,7 @@ export default class App extends React.Component {
               )} />
 
               <Route render={(props) => (
-                <Home {...props} user={this.props.user} getCurrentUser={this.props.onGetCurrentUser} />
+                <Home {...props} user={this.props.user} signoutUser={this.props.onSignoutUser} getCurrentUser={this.props.onGetCurrentUser} signinUser={this.props.onSigninUser} />
               )} />
             </Switch>
           </div>
@@ -70,5 +76,7 @@ App.propTypes = {
   onCalNextAction: PropTypes.func,
   onCalPrevAction: PropTypes.func,
   onCalSetDate: PropTypes.func,
-  onGetCurrentUser: PropTypes.func
+  onGetCurrentUser: PropTypes.func,
+  onSigninUser: PropTypes.func,
+  onSignoutUser: PropTypes.func
 };

@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import axios from 'axios';
-
-class SignUp extends React.Component {
+class SignIn extends React.Component {
 
   constructor(props) {
     super(props);
@@ -32,39 +30,27 @@ class SignUp extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    axios
-      .post(`http://127.0.0.1:4000/signup`, {
-        "email": this.state.email,
-        "password": this.state.password
-      })
-      .then(res => {
-        console.log(res);
-        // this.currentUser();
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log(error.response);
-      });
+    this.props.signinUser(this.state.email, this.state.password);
   }
 
   render() {
 
     return (
-      <section className="signup" aria-label="sign up">
-        <header className="signup__header">
-          <h2 className="signup__title">Signup</h2>
+      <section className="form-section" aria-label="sign in">
+        <header className="form-section__header">
+          <h2 className="form-section__title">Sign In</h2>
         </header>
 
-        <div className="signup__body">
+        <div className="form-section__body">
 
-          <form className="signup__form" onSubmit={this.handleSubmit}>
+          <form className="form-section__form" onSubmit={this.handleSubmit}>
             <label>Email:</label>
             <input type="email" value={this.state.email} onChange={this.handleEmailChange} />
 
             <label>Password:</label>
             <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
 
-            <button type="submit">Signup!</button>
+            <button className="form-section__btn" type="submit">Signin!</button>
           </form>
 
         </div>
@@ -74,7 +60,8 @@ class SignUp extends React.Component {
   }
 }
 
-SignUp.propTypes = {
+SignIn.propTypes = {
+  signinUser: PropTypes.func.isRequired
 };
 
-export default SignUp;
+export default SignIn;

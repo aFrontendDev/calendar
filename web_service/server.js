@@ -46,9 +46,36 @@ app.post('/signup', function (req, res) {
   });
 });
 
+app.post('/signin', function (req, res) {
+  const password = req.body.password;
+  const email = req.body.email;
+
+  firebase.signIn(email, password).then(function(fulfilled) {
+    console.log(fulfilled);
+    res.sendStatus(200);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).send(error);
+  });
+});
+
+app.get('/signout', function (req, res) {
+  
+  firebase.signOut()
+    .then(function(fulfilled) {
+      console.log(fulfilled);
+      res.sendStatus(200);
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.status(500).send(error);
+    });
+});
+
 app.get('/currentUser', function (req, res) {
   const user = firebase.currentUser();
-  console.log(user);
+  // console.log(user);
   res.send(user);
 });
 

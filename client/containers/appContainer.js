@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
 import { menuAction } from '../actions/menuAction';
 import { calendarNextAction, calendarPrevAction, calendarSetDate } from '../actions/calendarActions';
-import { getUserData } from '../actions/userAction';
+import { getUserData, signInUser, signOutUser } from '../actions/userAction';
 import App from '../App';
 
 const mapStateToProps = (state) => {
   return {
     menuIsIn: state.menuIsIn,
     date: state.date,
-    user: state.user
+    user: state.user,
+    email: state.email,
+    password: state.password
   };
 };
 
@@ -18,7 +20,9 @@ const mapDispatchToProps = (dispatch) => {
     onMenuAction: (menuIsIn) => dispatch(menuAction(menuIsIn)),
     onCalNextAction: (date) => dispatch(calendarNextAction(date)),
     onCalPrevAction: (date) => dispatch(calendarPrevAction(date)),
-    onGetCurrentUser: (user) => dispatch(getUserData(user))
+    onGetCurrentUser: (user) => dispatch(getUserData(user)),
+    onSigninUser: (email, password) => dispatch(signInUser(email, password)),
+    onSignoutUser: (user) => dispatch(signOutUser(user))
   };
 };
 

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Signup from '../components/authenticate/signup.jsx';
+import Signin from '../components/authenticate/signin.jsx';
+import Signout from '../components/authenticate/signout.jsx';
 
 class Home extends React.Component {
   constructor(props) {
@@ -15,8 +17,9 @@ class Home extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('newProps');
+    console.log('home.js newProps');
     console.log(newProps);
+
     this.setState({
       user: newProps.user
     });
@@ -32,16 +35,34 @@ class Home extends React.Component {
     return (
       <section>
 
-        <Signup getCurrentUser={this.props.getCurrentUser} />
+        {
+          this.state.user && this.state.user.uid
+          ?
+            null
+          :
+          <div>
+            <Signup />
+            <br />
+            <Signin signinUser={this.props.signinUser} />
+          </div>
+        }
+
+        <br />
 
         <button onClick={this.getUserHandler}>
           Get Current User!
         </button>
 
-        <ul>
-          <li>{this.state.user.uid}</li>
-          <li>{this.state.user.email}</li>
-        </ul>
+        <Signout signoutUser={this.props.signoutUser} />
+
+        {
+          this.state.user && this.state.user.uid ?
+          <ul>
+            <li>{this.state.user.uid}</li>
+            <li>{this.state.user.email}</li>
+          </ul>
+          : null
+        }
 
       </section>
     )
@@ -50,7 +71,11 @@ class Home extends React.Component {
 
 Home.propTypes = {
   getCurrentUser: PropTypes.func.isRequired,
-  user: PropTypes.object
+  user: PropTypes.object,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  signinUser: PropTypes.func.isRequired,
+  signoutUser: PropTypes.func.isRequired
 };
 
 export default Home;

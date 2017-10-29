@@ -1,15 +1,26 @@
 import { combineReducers } from 'redux';
 import menuReducer from './menuReducer';
 import calendarReducer from './calendarReducer';
-// import calendarSetDate from './calendarSetDate';
-import { userDetail, userError, userEmpty} from './userReducer';
+import { userDetail, userError, signinSuccess, signinError, signoutSuccess, signoutError} from './userReducer';
 
-const rootReducer = combineReducers({
+
+const appReducer = combineReducers({
   menuIsIn: menuReducer,
   date: calendarReducer,
   user: userDetail,
-  userEmpty,
-  userError
+  userError,
+  signinSuccess,
+  signinError,
+  signoutSuccess,
+  signoutError
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === 'GET_USER_EMPTY') {
+    state = undefined;
+  }
+
+  return appReducer(state, action)
+}
 
 export default rootReducer;
