@@ -1,18 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import axios from 'axios';
+
 class SignIn extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      user: this.props.user,
+      loading: false
     };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log('signin.js newProps');
+    console.log(newProps);
+
+    this.setState({
+      user: newProps.user
+    });
+
+    if (this.state.loading && this.state.user && this.state.user.uid) {
+      this.setState({
+        loading: false
+      });
+    }
   }
 
   handleEmailChange(event) {
@@ -30,7 +49,26 @@ class SignIn extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    this.props.signinUser(this.state.email, this.state.password);
+    this.setState({
+      loading: true
+    });
+
+    // this.props.signinUser(this.state.email, this.state.password);
+    axios
+    .post(`http://127.0.0.1:4000/signin`, {
+      "email": this.state.email,
+      "password": this.state.password
+    })
+    .then(res => {
+      console.log('user action response');
+      console.log(res);
+      this.props.getUser();
+    })
+    .catch((error) => {
+      console.log('userReducer error');
+      console.log(error);
+      this.props.getUser();
+    });
   }
 
   render() {
@@ -51,6 +89,12 @@ class SignIn extends React.Component {
             <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
 
             <button className="form-section__btn" type="submit">Signin!</button>
+
+            {
+              this.state.loading
+              ? <span>Loading</span>
+              : null
+            }
           </form>
 
         </div>
@@ -61,7 +105,9 @@ class SignIn extends React.Component {
 }
 
 SignIn.propTypes = {
-  signinUser: PropTypes.func.isRequired
+  signinUser: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
+  user: PropTypes.object
 };
 
 export default SignIn;

@@ -37,7 +37,7 @@ app.post('/signup', function (req, res) {
   const email = req.body.email;
 
   firebase.signUp(email, password).then(function(fulfilled) {
-    console.log(fulfilled);
+    // console.log(fulfilled);
     res.sendStatus(200);
   })
   .catch(function (error) {
@@ -51,7 +51,7 @@ app.post('/signin', function (req, res) {
   const email = req.body.email;
 
   firebase.signIn(email, password).then(function(fulfilled) {
-    console.log(fulfilled);
+    // console.log(fulfilled);
     res.sendStatus(200);
   })
   .catch(function (error) {
@@ -61,10 +61,10 @@ app.post('/signin', function (req, res) {
 });
 
 app.get('/signout', function (req, res) {
-  
+
   firebase.signOut()
     .then(function(fulfilled) {
-      console.log(fulfilled);
+      // console.log(fulfilled);
       res.sendStatus(200);
     })
     .catch(function (error) {

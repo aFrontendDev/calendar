@@ -38,22 +38,14 @@ class Home extends React.Component {
         {
           this.state.user && this.state.user.uid
           ?
-            null
+            <Signout user={this.state.user} getUser={this.props.getCurrentUser} signoutUser={this.props.signoutUser} />
           :
           <div>
             <Signup />
             <br />
-            <Signin signinUser={this.props.signinUser} />
+            <Signin user={this.state.user} getUser={this.props.getCurrentUser} signinUser={this.props.signinUser} />
           </div>
         }
-
-        <br />
-
-        <button onClick={this.getUserHandler}>
-          Get Current User!
-        </button>
-
-        <Signout signoutUser={this.props.signoutUser} />
 
         {
           this.state.user && this.state.user.uid ?

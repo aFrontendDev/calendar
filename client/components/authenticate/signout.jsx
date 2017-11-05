@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import axios from 'axios';
+
 class SignOut extends React.Component {
 
   constructor(props) {
@@ -12,7 +14,20 @@ class SignOut extends React.Component {
   signout(event) {
     event.preventDefault();
 
-    this.props.signoutUser();
+    axios
+    .get(`http://127.0.0.1:4000/signout`)
+    .then(res => {
+      console.log('user action response');
+      console.log(res);
+      this.props.getUser();
+    })
+    .catch((error) => {
+      console.log('userReducer error');
+      console.log(error);
+      this.props.getUser();
+    });
+
+    // this.props.signoutUser();
   }
 
   render() {
@@ -24,7 +39,9 @@ class SignOut extends React.Component {
 }
 
 SignOut.propTypes = {
-  signoutUser: PropTypes.func.isRequired
+  signoutUser: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
+  user: PropTypes.object
 };
 
 export default SignOut;
