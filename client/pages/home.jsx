@@ -35,15 +35,15 @@ class Home extends React.Component {
     return (
       <section>
 
+        <Signup user={this.state.user} getUser={this.props.getCurrentUser} />
         {
           this.state.user && this.state.user.uid
           ?
-            <Signout user={this.state.user} getUser={this.props.getCurrentUser} signoutUser={this.props.signoutUser} />
+            <Signout user={this.state.user} getUser={this.props.getCurrentUser} />
           :
           <div>
-            <Signup />
             <br />
-            <Signin user={this.state.user} getUser={this.props.getCurrentUser} signinUser={this.props.signinUser} />
+            <Signin user={this.state.user} getUser={this.props.getCurrentUser} />
           </div>
         }
 

@@ -46,6 +46,27 @@ app.post('/signup', function (req, res) {
   });
 });
 
+app.post('/adduser', function (req, res) {
+  const email = req.body.email;
+  const uid = req.body.uid;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+
+  console.log(email);
+  console.log(uid);
+  console.log(firstName);
+  console.log(lastName);
+
+  firebase.addUser(email, uid, firstName, lastName).then(function(fulfilled) {
+    // console.log(fulfilled);
+    res.sendStatus(200);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).send(error);
+  });
+});
+
 app.post('/signin', function (req, res) {
   const password = req.body.password;
   const email = req.body.email;

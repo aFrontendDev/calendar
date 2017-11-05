@@ -9,12 +9,19 @@ class SignUp extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      firstName: '',
+      lastName: '',
+      user: this.props.user,
+      createdNewUser: false
     };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addUser = this.addUser.bind(this);
   }
 
   handleEmailChange(event) {
@@ -29,6 +36,18 @@ class SignUp extends React.Component {
     });
   }
 
+  handleFirstNameChange(event) {
+    this.setState({
+      firstName: event.target.value
+    });
+  }
+
+  handleLastNameChange(event) {
+    this.setState({
+      lastName: event.target.value
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -39,7 +58,46 @@ class SignUp extends React.Component {
       })
       .then(res => {
         console.log(res);
-        // this.currentUser();
+
+        this.setState({
+          createdNewUser: true
+        });
+
+        this.props.getUser();
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(error.response);
+      });
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log('signup.js newProps');
+    console.log(newProps);
+
+    this.setState({
+      user: newProps.user
+    });
+
+    if (this.state.createdNewUser && newProps.user && newProps.user.uid) {
+      this.addUser(newProps.user.uid);
+    }
+  }
+
+  addUser(uid) {
+    axios
+      .post(`http://127.0.0.1:4000/adduser`, {
+        "email": this.state.email,
+        "uid": uid,
+        "firstName": this.state.firstName,
+        "lastName": this.state.lastName
+      })
+      .then(res => {
+        console.log(res);
+
+        this.setState({
+          createdNewUser: false
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -51,23 +109,39 @@ class SignUp extends React.Component {
 
     return (
       <section className="signup" aria-label="sign up">
-        <header className="signup__header">
-          <h2 className="signup__title">Signup</h2>
-        </header>
+      {
+        this.state.user && this.state.user.uid
+        ? null
+        :
+          <div>
+            <header className="signup__header">
+              <h2 className="signup__title">Signup</h2>
+            </header>
 
-        <div className="signup__body">
+            <div className="signup__body">
 
-          <form className="signup__form" onSubmit={this.handleSubmit}>
-            <label>Email:</label>
-            <input type="email" value={this.state.email} onChange={this.handleEmailChange} />
+              <form className="signup__form" onSubmit={this.handleSubmit}>
+                <label>Email:</label>
+                <input type="email" value={this.state.email} onChange={this.handleEmailChange} />
 
-            <label>Password:</label>
-            <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                <label>Password:</label>
+                <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
 
-            <button type="submit">Signup!</button>
-          </form>
+                <br />
+                <label>First name:</label>
+                <input type="text" value={this.state.firstName} onChange={this.handleFirstNameChange} />
 
-        </div>
+                <br />
+                <label>Last name:</label>
+                <input type="text" value={this.state.lastName} onChange={this.handleLastNameChange} />
+
+                <br /><br />
+                <button type="submit">Signup!</button>
+              </form>
+
+            </div>
+          </div>
+      }
 
       </section>
     )
@@ -75,6 +149,8 @@ class SignUp extends React.Component {
 }
 
 SignUp.propTypes = {
+  getUser: PropTypes.func.isRequired,
+  user: PropTypes.object
 };
 
 export default SignUp;

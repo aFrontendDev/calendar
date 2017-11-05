@@ -39,7 +39,6 @@ class SignOut extends React.Component {
 }
 
 SignOut.propTypes = {
-  signoutUser: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
   user: PropTypes.object
 };

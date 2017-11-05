@@ -105,7 +105,6 @@ class SignIn extends React.Component {
 }
 
 SignIn.propTypes = {
-  signinUser: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
   user: PropTypes.object
 };

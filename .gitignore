@@ -29,6 +29,7 @@ node_modules
 
 #private
 web_service/private-config.js
+web_service/calendar-58189367ae49.json
 
 # generated components
 dist
