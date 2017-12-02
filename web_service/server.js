@@ -48,16 +48,16 @@ app.post('/signup', function (req, res) {
 
 app.post('/adduser', function (req, res) {
   const email = req.body.email;
-  const uid = req.body.uid;
+  const userId = req.body.uid;
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
 
   console.log(email);
-  console.log(uid);
+  console.log(userId);
   console.log(firstName);
   console.log(lastName);
 
-  firebase.addUser(email, uid, firstName, lastName).then(function(fulfilled) {
+  firebase.addUser(email, userId, firstName, lastName).then(function(fulfilled) {
     // console.log(fulfilled);
     res.sendStatus(200);
   })

@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import { menuAction } from '../actions/menuAction';
 import { calendarNextAction, calendarPrevAction, calendarSetDate } from '../actions/calendarActions';
 import { getUserData, signInUser, signOutUser } from '../actions/userAction';
@@ -26,9 +28,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const AppContainer = connect(
+const AppContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(App));
 
 export default AppContainer;

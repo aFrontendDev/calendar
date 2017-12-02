@@ -1,5 +1,9 @@
 // calendar
 
+.month__body {
+  position: relative;
+}
+
 .week,
 .days-heading {
   display: flex;

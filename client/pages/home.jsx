@@ -17,8 +17,6 @@ class Home extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('home.js newProps');
-    console.log(newProps);
 
     this.setState({
       user: newProps.user
@@ -29,7 +27,6 @@ class Home extends React.Component {
     e.preventDefault();
     this.props.getCurrentUser();
   }
-
 
   render() {
     return (
@@ -53,6 +50,7 @@ class Home extends React.Component {
             <li>{this.state.user.uid}</li>
             <li>{this.state.user.email}</li>
           </ul>
+
           : null
         }
 

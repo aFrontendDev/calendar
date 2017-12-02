@@ -51,17 +51,17 @@ module.exports = {
     });
   },
 
-  addUser(email, uid, firstName, lastName) {
+  addUser(email, userId, firstName, lastName) {
     const db = admin.database();
     let errored = false;
 
     console.log(email);
-    console.log(uid);
+    console.log(userId);
     console.log(firstName);
     console.log(lastName);
 
     return new Promise(function(resolve, reject) {
-      db.ref('users/' + uid).set({
+      db.ref('users/' + userId).set({
         email,
         firstName,
         lastName

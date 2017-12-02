@@ -57,7 +57,6 @@ class SignUp extends React.Component {
         "password": this.state.password
       })
       .then(res => {
-        console.log(res);
 
         this.setState({
           createdNewUser: true
@@ -72,8 +71,6 @@ class SignUp extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('signup.js newProps');
-    console.log(newProps);
 
     this.setState({
       user: newProps.user
@@ -93,7 +90,6 @@ class SignUp extends React.Component {
         "lastName": this.state.lastName
       })
       .then(res => {
-        console.log(res);
 
         this.setState({
           createdNewUser: false

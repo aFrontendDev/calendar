@@ -17,13 +17,9 @@ class SignOut extends React.Component {
     axios
     .get(`http://127.0.0.1:4000/signout`)
     .then(res => {
-      console.log('user action response');
-      console.log(res);
       this.props.getUser();
     })
     .catch((error) => {
-      console.log('userReducer error');
-      console.log(error);
       this.props.getUser();
     });
 

@@ -25,7 +25,11 @@ class Calendar extends React.Component {
         "Thursday": 4,
         "Friday": 5,
         "Saturday": 6
-      }
+      },
+      dayOpened: false,
+      selectedDate: null,
+      selectedDateAdded: false,
+      selectedDateTimes: null
     }
 
     this.setData = this.setData.bind(this);
@@ -34,6 +38,9 @@ class Calendar extends React.Component {
     this.getMonth = this.getMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
     this.nextMonth = this.nextMonth.bind(this);
+    this.closeDay = this.closeDay.bind(this);
+    this.selectedDateMatch = this.selectedDateMatch.bind(this);
+    this.timesOnDate = this.timesOnDate.bind(this);
   }
 
   getMonth(month, year) {
@@ -116,6 +123,98 @@ class Calendar extends React.Component {
     }
   }
 
+  openDay(item, e) {
+    console.log(item);
+
+    const matchedDate = this.selectedDateMatch(item.date);
+    if (matchedDate) {
+      this.setState({
+        selectedDateAdded: true
+      });
+    } else {
+      this.setState({
+        selectedDateAdded: false
+      });
+    }
+
+    const timesAvailable = this.timesOnDate(item.date);
+    if (timesAvailable) {
+      this.setState({
+        selectedDateTimes: timesAvailable
+      });
+    } else {
+      this.setState({
+        selectedDateTimes: null
+      });
+    }
+
+    this.setState({
+      dayOpened: true,
+      selectedDate: item.date
+    });
+  }
+
+  closeDay(e) {
+
+    this.setState({
+      dayOpened: false,
+      selectedDate: null
+    });
+  }
+
+  selectedDateMatch(date) {
+    let matchedDate = false;
+
+    if (!date) {
+      return false;
+    }
+
+    const existingSelectedDates = this.state.userCalendar.datesSelected;
+    if (!existingSelectedDates || existingSelectedDates.length < 1) {
+      return false;
+    }
+
+    existingSelectedDates.map(d => {
+      if (d.date === date) {
+        matchedDate = true;
+      }
+    });
+
+    if (matchedDate) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  timesOnDate(date) {
+    let selectedDate = null;
+
+    if (!date) {
+      return;
+    }
+
+    const existingSelectedDates = this.state.userCalendar.datesSelected;
+    if (!existingSelectedDates || existingSelectedDates.length < 1) {
+      return false;
+    }
+
+    existingSelectedDates.map(d => {
+      if (d.date === date) {
+        selectedDate = d;
+      }
+    });
+
+    if (!selectedDate) {
+      return;
+    }
+
+    const times = selectedDate.timesAvailable;
+    if (times && times.length > 0) {
+      return times;
+    }
+  }
+
   componentWillMount() {
     this.setData(this.props);
   }
@@ -137,6 +236,7 @@ class Calendar extends React.Component {
       const emptyDays = this.state.emptyDays;
       const remainingEmptyDays = this.state.remainingEmptyDays;
       const totalMembers = this.state.calendar.totalMembers;
+      const dayOpenedClass = this.state.dayOpened ? 'day-opened' : '';
 
       return (
         <section className="calendar" aria-label="calendar">
@@ -171,13 +271,15 @@ class Calendar extends React.Component {
                 {
                   month.dates.map((item, index) => {
                     const isEmpty = item.emptyDay || false;
+                    const boundDayClick = this.openDay.bind(this, item);
 
                     const matchedDate = isEmpty ? false : this.hasBeenAdded(item) || false;
                     const date = isEmpty ? null : item.date;
                     let allAddedClass = '';
                     let atLeaseOneClass = '';
                     let numberAdded = null;
-                    const userHasAdded = isEmpty ? false : this.state.userCalendar.datesSelected.includes(item.date);
+                    {/* const userHasAdded = isEmpty ? false : this.state.userCalendar.datesSelected.includes(item.date); */}
+                    const userHasAdded = isEmpty ? false : this.selectedDateMatch(item.date);
 
                     if (matchedDate) {
                       allAddedClass = matchedDate.numberSelected === totalMembers ? ' day--all-added ' : '';
@@ -194,7 +296,7 @@ class Calendar extends React.Component {
                           <div className="day__inner">
                             <span className="day__number">{item.dayOfMonth}</span>
                             {numberAdded ? <span className="day__amount-selected">{numberAdded}</span> : null}
-                            <button className="btn--unstyled day__btn">
+                            <button className="btn--unstyled day__btn" onClick={boundDayClick}>
                             {
                               userHasAdded ?
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg>
@@ -209,9 +311,70 @@ class Calendar extends React.Component {
                   })
                 }
                 </div>
+
+                <div className={"calendar-modal " + dayOpenedClass}>
+                  <button className="btn--unstyled calendar-modal__close-btn" onClick={this.closeDay}>X</button>
+                  <div className="calendar-modal__inner">
+                    <h3 className="calendar-modal__title">Chosen date: {this.state.selectedDate}</h3>
+
+                    {
+                      this.state.selectedDateAdded
+                      ? <p>You're available this day!</p>
+                      : null
+                    }
+
+                    {
+                      this.state.selectedDateAdded
+                      ? <button className="day-btn" onClick={this.removeDay}>Remove Day</button>
+                      : <button className="day-btn" onClick={this.addDay}>Add Day</button>
+                    }
+
+                    {
+                      this.state.selectedDateTimes ?
+                        <div className="day-times">
+                          <h4 className="day-times__title">Times you're free:</h4>
+                          <ul>
+                          {
+                            this.state.selectedDateTimes.map(time => {
+                              return(
+                                <li>
+                                  <div className="day-times__available">
+                                    <label>From:</label>
+                                    <select disabled>
+                                      <option>{time.from}</option>
+                                    </select>
+                                    <label>To:</label>
+                                    <select disabled>
+                                      <option>{time.to}</option>
+                                    </select>
+                                    <button className="day-times__edit-btn">Edit</button>
+                                    <button className="day-times__remove-btn">Delete</button>
+                                  </div>
+                                </li>
+                              )
+                            })
+                          }
+                          </ul>
+                        </div>
+                      :
+                        <span>
+                        {
+                          this.state.selectedDateAdded ?
+                            <div className="day-times">
+                              <h4 className="day-times__title">You're free any time!</h4>
+                            </div>
+                          : null
+                        }
+                        </span>
+                    }
+
+                  </div>
+                </div>
+
               </div>
             </article>
           </div>
+
         </section>
       )
     } else {

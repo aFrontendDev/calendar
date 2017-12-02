@@ -1,0 +1,28 @@
+// calendar-modal 
+
+.calendar-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40vw;
+  height: 40vh;
+  transform: translate3d(-50%, -30%, 0);
+  opacity: 0;
+  background: #fff;
+  border: solid 2px #333;
+  border-radius: 5px;
+  padding: 20px;
+  transition: transform 300ms, opacity 200ms ease-in-out;
+
+  &.day-opened {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 2;
+  }
+}
+
+.calendar-modal__close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

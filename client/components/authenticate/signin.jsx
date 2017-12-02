@@ -20,8 +20,6 @@ class SignIn extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('signin.js newProps');
-    console.log(newProps);
 
     this.setState({
       user: newProps.user
@@ -60,12 +58,10 @@ class SignIn extends React.Component {
       "password": this.state.password
     })
     .then(res => {
-      console.log('user action response');
-      console.log(res);
       this.props.getUser();
     })
     .catch((error) => {
-      console.log('userReducer error');
+      console.log('signin error');
       console.log(error);
       this.props.getUser();
     });
