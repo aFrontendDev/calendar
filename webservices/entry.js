@@ -2,6 +2,16 @@ const express = require('express');
 const app = express();
 const db = require('./db');
 
+// START *** Settings headers to allow cross domain requests
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET');
+  res.header('Access-Control-Allow-Methods', 'POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+// END *****
+
 var AuthController = require('./auth/authController');
 app.use('/api/auth', AuthController);
 

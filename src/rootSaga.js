@@ -1,9 +1,9 @@
 import { all } from "redux-saga/effects"
-import dogSaga from "./sagas/dogSaga/dogSaga";
+import authSaga from "./sagas/authSaga/authSaga";
 
 function* rootSaga() {
   yield all([
-    dogSaga()
+    authSaga()
   ]);
 }
 

@@ -1,5 +1,9 @@
 import React from 'react';
 
+import Register from '../../sharedComponents/auth/register/index';
+
+const Fragment = React.Fragment;
+
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +12,10 @@ export default class Home extends React.Component {
   render() {
 
     return (
-      <div>HOME</div>
+      <Fragment>
+        <div>HOME</div>
+        <Register />
+      </Fragment>
     );
   }
 }
