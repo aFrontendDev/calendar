@@ -1,0 +1,95 @@
+// global.scss
+
+* {
+	-webkit-tap-highlight-color: transparent;
+	word-wrap: break-word;
+	box-sizing: border-box;
+}
+
+:focus {
+	outline: none;
+}
+
+@include placeholder(#999);
+
+html {
+	font-size: 100%;
+	background: #fff;
+	height: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	// Disable iOS/WinMobile font size changes
+	@media screen and (max-device-width: 480px) {
+		-webkit-text-size-adjust: 100%;
+		-ms-text-size-adjust: 100%;
+	}
+
+	&.menu-in {
+		overflow: hidden;
+	}
+}
+
+body {
+	color: $color-text;
+	font-family: $font-family-base;
+	font-weight: $font-weight-regular;
+	line-height: $line-height-base;
+	height: 100%;
+}
+
+.root {
+	height: 100%;
+}
+
+.wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+img {
+	-ms-interpolation-mode: bicubic;
+	max-width: 100%;
+}
+
+.grid {
+	display: none;
+
+	.layout {
+		padding: 0;
+	}
+
+	.visible-grid-in & {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1001;
+		background: rgba(0,0,0,0);
+		display: block;
+
+		body:hover & {
+			z-index: 0;
+		}
+
+		.layout,
+		.region,
+		.region-inner,
+		.block,
+		.section-wrapper,
+		.section-wrapper__inner {
+			height: 100%;
+		}
+
+		.block {
+			background: red;
+			opacity: 0.2;
+		}
+	}
+}
+

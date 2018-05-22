@@ -1,0 +1,143 @@
+// Buttons
+//
+// Button styles can be applied to anything with the `.btn` class applied.
+// However, typically you'll want to apply these to only `<a>` and `<button>` elements for the best rendering.
+$btn-border-width: 1px;
+$btn-height: 54px;
+$btn-width: 280px;
+
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+button::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+.btn {
+	@include underline-reset();
+
+	background-color: $primary-color-a;
+	background-image: none;
+	border: $btn-border-width solid $primary-color-a;
+	box-shadow: none;
+	color: $brand-white;
+	cursor: pointer;
+	display: inline-block;
+	font-family: $font-family-base;
+	@include rem(font-size, 16px);
+	font-weight: $font-weight-bold;
+	@include rem(line-height, 16px);
+	@include rem(margin-bottom, $vr);
+	@include rem(margin-right, $ggw);
+	@include rem(min-height, $btn-height);
+	@include rem(min-width, $btn-width);
+	@include rem(padding, 20px 15px);
+	text-align: right;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background 250ms, border-color 250ms;
+	vertical-align: top;
+	white-space: nowrap;
+	-webkit-font-smoothing: antialiased; // get rid of faux bolding
+
+	&:active,
+	&.active {
+		box-shadow: none;
+		outline: 0;
+	}
+
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		opacity: 0.65;
+
+		box-shadow: none;
+		cursor: default;
+		pointer-events: none; // Future-proof disabling of clicks
+	}
+
+	&:focus {
+		outline: 1px dotted currentColor;
+		text-decoration: underline;
+	}
+}
+
+.btn--unstyled,
+.btn-no-style {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	min-height: 0;
+	min-width: 0;
+	text-transform: none;
+
+	&:focus {
+		outline: 1px dotted currentColor;
+	}
+}
+
+// blue bg, white text
+.btn--style-a {
+	background-color: $primary-color-a;
+	border-color: $primary-color-a;
+	color: $brand-white;
+
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		opacity: 1;
+
+		box-shadow: none;
+		cursor: default;
+		pointer-events: none; // Future-proof disabling of clicks
+	}
+
+	&:focus {
+		outline: 1px dotted currentColor;
+	}
+}
+
+// white bg, blue border & text
+.btn--style-b {
+	background-color: $brand-white;
+	border-color: $primary-color-a;
+	color: $primary-color-a;
+
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		opacity: 1;
+		box-shadow: none;
+		cursor: default;
+		pointer-events: none; // Future-proof disabling of clicks
+	}
+
+	&:focus {
+		outline: 1px dotted currentColor;
+	}
+}
+
+// black bg, white text
+.btn--style-c {
+	background-color: $brand-black;
+	border-color: $brand-black;
+	color: $brand-white;
+
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		opacity: 1;
+
+		box-shadow: none;
+		cursor: default;
+		pointer-events: none; // Future-proof disabling of clicks
+	}
+
+	&:focus {
+		outline: 1px dotted currentColor;
+	}
+}

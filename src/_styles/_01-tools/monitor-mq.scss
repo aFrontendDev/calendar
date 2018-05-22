@@ -1,0 +1,87 @@
+// for monitor-mq.js
+
+.monitor-mq {
+	display: block;
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	top: -9999em;
+	left: -9999em;
+	// smallest
+	width: $break-point-a;
+
+	&.rtl {
+		left: auto;
+		right: -9999em;
+	}
+
+	.visible-breakpoints &:after {
+		background: rgba(0,0,0,0.5);
+		color: white;
+		// smallest
+		content: '$break-point-a';
+		font-weight: $font-weight-bold;
+		@include rem(padding, $vr $vr*2);
+		position: fixed;
+		@include rem(right, $vr*3);
+		@include rem(bottom, $vr*3);
+		text-align: center;
+		z-index: 1000;
+	}
+
+	@media (min-width: $break-point-b) {
+		@include rem(width, $break-point-b-px);
+
+		.visible-breakpoints &:after {
+			content: '$break-point-b';
+		}
+	}
+
+	@media (min-width: $break-point-c) {
+		@include rem(width, $break-point-c-px);
+
+		.visible-breakpoints &:after {
+			content: '$break-point-c';
+		}
+	}
+
+	@media (min-width: $break-point-d) {
+		@include rem(width, $break-point-d-px);
+
+		.visible-breakpoints &:after {
+			content: '$break-point-d';
+		}
+	}
+
+	@media (min-width: $break-point-e) {
+		@include rem(width, $break-point-e-px);
+
+		.visible-breakpoints &:after {
+			content: '$break-point-e';
+		}
+	}
+
+	@media (min-width: $break-point-f) {
+		@include rem(width, $break-point-f-px);
+
+		.visible-breakpoints &:after {
+			content: '$break-point-f';
+		}
+	}
+
+	@media (min-width: $break-point-g) {
+		@include rem(width, $break-point-g-px);
+
+		.visible-breakpoints &:after {
+			content: '$break-point-g';
+		}
+	}
+
+	@media (min-width: $break-point-h) {
+		@include rem(width, $break-point-h-px);
+
+		.visible-breakpoints &:after {
+			content: '$break-point-h +';
+		}
+	}
+}

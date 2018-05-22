@@ -1,0 +1,118 @@
+// selects
+
+select {
+	text-transform: none;
+	@include rem(font-size, 14px);
+	color: #434343;
+	text-align: left;
+
+	&::-ms-expand {
+		display: none;
+	}
+}
+
+.select-replace {
+	display: block;
+	position: relative;
+	padding: 0;
+	@include rem(font-size, 16px);
+	border: 2px solid $gray-a;
+	border-radius: 4px;
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+	background: transparent;
+	@include rem(height, 50px);
+	outline: none;
+	margin-bottom: $vr;
+
+	@media #{$BPD} {
+		display: inline-block;
+		vertical-align: middle;
+		padding: 0;
+	}
+
+	&.standard-size {
+		@include rem(width, 250px);
+
+		@media #{$BPD} {
+			@include rem(width, 250px);
+		}
+	}
+
+	&:hover,
+	&:focus {
+		background:  transparent;
+	}
+
+	select {
+		background: none;
+		position: relative;
+		border: 0;
+		box-shadow: none;
+		text-overflow: '';
+		@include rem(padding-right, 40px);
+		@include rem(height, 46px);
+		width: 100%;
+		appearance: none;
+		border-radius: $input-border-radius;
+		@include rem(padding-left, 20px);
+		cursor: pointer;
+		font-weight: $font-weight-regular;
+		z-index: 2;
+		color: $gray-e;
+		font-family: sans-serif;
+		@include rem(font-size, 15px);
+
+		&[disabled] {
+			cursor: not-allowed;
+		}
+
+		@media #{$BPD} {
+			padding: 0 $input-padding-x;
+			@include rem(padding-right, 40px);
+		}
+
+		option {
+			@include rem(padding, 0 10px);
+		}
+
+		&:focus {
+			outline: 1px dotted currentColor;
+		}
+	}
+
+	&:after {
+		display: block;
+		@include rem(height, 10px);
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		@include rem(right, 23px);
+		@include rem(width, 14px);
+		z-index: 1;
+		@include rem(font-size, 15px);
+		@include rem(line-height, 11px);
+		color: $gray-a;
+		font-family: $icon-font;
+		content: "\e906";
+		z-index: 1;
+
+		.lt-ie10 & {
+			display: none;
+		}
+	}
+}
+
+// Make multiple select elements height not fixed
+select[multiple],
+select[size] {
+	height: auto;
+	background: $brand-white;
+	@include rem(padding-top, $input-padding-y*2);
+	@include rem(padding-bottom, $input-padding-y);
+	@include rem(padding-right, 5px);
+	@include rem(line-height, $input-height - $vr);
+}

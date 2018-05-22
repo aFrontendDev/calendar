@@ -1,0 +1,171 @@
+// Forms specific variables
+$input-border-width: 2px;
+$input-border-radius: 0px;
+
+$input-height-smallscreen: $vr*4;
+$input-padding-y-smallscreen: $vr;
+$input-padding-x-smallscreen: 10px;
+
+$input-height: $vr*5;
+$input-padding-y: $vr;
+$input-padding-x: 15px;
+
+$input-icon-width: 16px;
+$input-color-a: $gray-b;
+
+
+// Elements with actions need pointers
+label,
+input[type='submit'],
+button {
+	cursor: pointer;
+}
+
+// Search Inputs
+input[type='search'] {
+	-webkit-appearance: none;
+
+	&::-webkit-search-decoration,
+	&::-webkit-search-cancel-button,
+	&::-webkit-search-results-button,
+	&::-webkit-search-results-decoration {
+		display: none;
+	}
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+// Remove -webkit styles from text inputs
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='url'],
+input[type='date'],
+input[type='week'],
+input[type='month'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='time'],
+input[type='number'],
+input[type='search'],
+input[type='password'],
+textarea {
+	appearance: none;
+}
+
+
+// Input size variations
+.input--mini,
+.input--small,
+.input--medium,
+.input--large,
+.input--xlarge,
+.input--xxlarge,
+.input--xxxlarge,
+.input--xxxxlarge {
+	width: 100%;
+}
+
+
+
+// Reset the file input to browser defaults
+input[type='file'] {
+	width: auto;
+	padding: initial;
+	line-height: initial;
+	background-color: initial;
+	border: initial;
+	box-shadow: none;
+	cursor: pointer;
+
+	.ie11 & {
+		border: none;
+		padding-left: 0;
+	}
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	appearance: none;
+	margin: 0;
+}
+
+.field-validation-message {
+	@include rem(font-size, 12px);
+}
+
+.form-title {
+	@include rem(font-size, 21px);
+}
+
+.important-text {
+	color: $primary-color-a;
+}
+
+// Inputs, Textareas, Selects
+input,
+textarea {
+	@include rem(padding, 0 20px);
+	max-width: 100%;
+	@include rem(font-size, 14px);
+	font-weight: $font-weight-regular;
+	color: $gray-e;
+	background: $brand-white;
+	border: 2px solid $gray-f;
+	border-radius: 0px;
+	vertical-align: middle;
+	display: inline-block;
+	transition: all 100ms;
+	white-space: nowrap;
+	@include rem(height, 50px);
+	outline: none;
+	margin-bottom: $vr;
+
+	@media #{$BPD} {
+		padding: 0 $input-padding-x;
+		@include rem(height, 50px);
+	}
+
+	&.input--has-value {
+		border-color: $gray-a;
+	}
+
+	&:focus {
+		border: 2px solid $gray-a;
+		outline: none;
+		color: $gray-d;
+	}
+
+	@include placeholder($gray-d);
+
+	&[disabled] {
+		background: #f0f0f0;
+		border-color: #ddd;
+		color: $color-text;
+		cursor: not-allowed;
+
+		&:hover,
+		&:focus {
+			border-color: transparent;
+		}
+	}
+
+	&[readonly] {
+		cursor: not-allowed;
+
+		&:hover,
+		&:focus {
+			border-color: #ccc;
+		}
+	}
+}
+
+

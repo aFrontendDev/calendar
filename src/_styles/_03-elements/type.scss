@@ -1,0 +1,127 @@
+// Type
+$text-color-a: #2425AF;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0;
+	color: $brand-black;
+	margin-bottom: 0;
+	font-family: $font-family-serif;
+	
+	.styleguide-page & {
+		@include rem(margin-bottom, $vr*3);
+	}
+
+	a {
+		text-decoration: none;
+	}
+}
+
+h1,
+.giga,
+.title--style-a {
+	font-weight: $font-weight-regular;
+	@include rem(font-size, 30px);
+	@include rem(line-height, 40px);
+
+	@media #{$BPC} {
+		@include rem(font-size, 42px);
+		@include rem(line-height, 56px);
+	}
+
+	@media #{$BPE} {
+		@include rem(font-size, 52px);
+		@include rem(line-height, 68px);
+	}
+}
+
+h2,
+.mega,
+.title--style-b {
+	font-weight: $font-weight-regular;
+	@include rem(font-size, 26px);
+	@include rem(line-height, 36px);
+
+	@media #{$BPC} {
+		@include rem(font-size, 32px);
+		@include rem(line-height, 42px);
+	}
+}
+
+h3,
+.alpha,
+.title--style-c {
+	font-weight: $font-weight-bold;
+	@include rem(font-size, 20px);
+	@include rem(line-height, 30px);
+
+	@media #{$BPC} {
+		font-weight: $font-weight-regular;
+		@include rem(font-size, 20px);
+		@include rem(line-height, 30px);
+	}
+}
+
+h4,
+.beta,
+.title--style-d {
+	font-weight: $font-weight-regular;
+	@include rem(font-size, 20px);
+	@include rem(line-height, 46px);
+
+	@media #{$BPC} {
+		font-weight: $font-weight-bold;
+		@include rem(font-size, 24px);
+		@include rem(line-height, 22px);
+	}
+}
+
+h5,
+.gamma,
+.title--style-e {
+	font-weight: $font-weight-regular;
+	@include rem(font-size, 24px);
+	@include rem(line-height, 34px);
+
+	@media #{$BPC} {
+		color: $text-color-a;
+		@include rem(font-size, 24px);
+		@include rem(line-height, 34px);
+	}
+}
+
+// Paragraphs
+p {
+	margin-top: 0;
+	margin-bottom: $vr;
+	@include rem(font-size, $font-size-base);
+	@include rem(line-height, 26px);
+
+	@media #{$BPC} {
+		@include rem(font-size, $font-size-base);
+		@include rem(line-height, 28px);
+	}
+}
+
+
+
+
+// only used on the stylesheet
+.header-stylesheet {
+	border-bottom: 1px solid #CCC;
+	color: #bbb;
+	font-size: 18px;
+	line-height: $vr*4;
+	margin-bottom: $vr*4;
+	padding-top: $vr*6;
+	padding-bottom: $vr*2;
+	text-align: left;
+
+	&:first-child {
+		padding-top: 0;
+	}
+}
