@@ -92,3 +92,12 @@ export const loginFailure = ({error}) => ({
   type: LOGIN_FAILURE,
   error
 });
+
+
+export const LOGOUT = "LOGOUT";
+export const logout = () => ({
+  type: LOGOUT,
+  auth: null,
+  username: null,
+  loggedin: false
+});

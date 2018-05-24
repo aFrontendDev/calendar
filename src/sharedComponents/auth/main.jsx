@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 
 import * as authActions from "../../actions/auth/authActions";
 
-import Register from "./register/index";
+import Register from "./register/register";
 import Login from "./login/login";
+import Logout from "./logout/logout";
 
 class AuthMain extends Component {
 
@@ -64,7 +65,11 @@ class AuthMain extends Component {
       {
         this.state.isLoggedin !== null ? 
           this.state.isLoggedin
-          ? <p>logged in: {this.props.username}</p>
+          ? 
+            <Fragment>
+              <p>logged in: {this.props.username}</p>
+              <Logout />
+            </Fragment>
           : 
             <Fragment>
               <Register />

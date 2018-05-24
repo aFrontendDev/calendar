@@ -10,7 +10,8 @@ import {
   ISLOGGEDIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  LOGOUT
 } from "../../actions/auth/authActions";
 
 // reducer with initial state
@@ -118,6 +119,14 @@ const authReducer = (state = initialState, action) => {
         loggingIn: false,
         auth: null,
         error
+      };
+      break;
+    case LOGOUT:
+      return {
+        ...state,
+        auth: null,
+        username: null,
+        loggedin: false
       };
       break;
 
