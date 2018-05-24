@@ -13,12 +13,16 @@ class Register extends Component {
     this.state = {
       username: '',
       password: '',
-      registered: false
+      email: '',
+      registered: false,
+      usernameAvailable: null
     }
 
     this.handleRegister = this.handleRegister.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleCheckUsername = this.handleCheckUsername.bind(this);
   }
 
   handleRegister(e) {
@@ -31,7 +35,11 @@ class Register extends Component {
       return
     }
 
-    this.props.register(this.state.username, this.state.password)
+    if (!this.state.email || this.state.email.length < 1) {
+      return
+    }
+
+    this.props.register(this.state.username, this.state.password, this.state.email)
   }
 
   handleUsernameChange(e) {
@@ -42,8 +50,25 @@ class Register extends Component {
     this.setState({password: e.target.value});
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const {registering, auth} = this.props.authObject;
+  handleEmailChange(e) {
+    this.setState({email: e.target.value});
+  }
+
+  handleCheckUsername() {
+    if (this.state.username && this.state.username.length) {
+      this.props.checkUsername(this.state.username);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {registering, auth, usernameAvailable} = nextProps.authObject;
+
+    if (usernameAvailable !== null) {
+      this.setState({
+        usernameAvailable
+      })
+    }
+
     if (!registering && auth && auth.token && !this.state.registered) {
 
       this.setState({
@@ -69,6 +94,18 @@ class Register extends Component {
               <div className="form-field">
                 <label htmlFor="username">Username: </label>
                 <input type="text" name="username" value={this.state.username} placeholder="e.g. andy123" onChange={this.handleUsernameChange} />
+                <button type="button" onClick={this.handleCheckUsername}>Check username</button>
+                {
+                  this.state.usernameAvailable !== null ?
+                    this.state.usernameAvailable
+                    ? <p>username is free</p>
+                    : <p>username is in use</p>
+                  : null
+                }
+              </div>
+              <div className="form-field">
+                <label htmlFor="email">Email: </label>
+                <input type="text" name="email" value={this.state.email} placeholder="e.g. andy@gmail.com" onChange={this.handleEmailChange} />
               </div>
               <div className="form-field">
                 <label htmlFor="password">Password: </label>
@@ -89,7 +126,6 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('register state', state);
   return {
     registering: state.registering,
     authObject: state.auth
@@ -97,9 +133,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  register: authActions.register
+  register: authActions.register,
+  checkUsername: authActions.checkUsername
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
-
-// export default Register;

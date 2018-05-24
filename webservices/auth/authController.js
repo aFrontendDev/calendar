@@ -16,7 +16,8 @@ router.post('/register', function(req, res) {
 
   User.create({
       name : req.body.name,
-      password : hashedPassword
+      password : hashedPassword,
+      email : req.body.email,
     },
     function (err, user) {
       if (err) {
@@ -32,18 +33,26 @@ router.post('/register', function(req, res) {
   );
 });
 
-
-router.get('/me', VerifyToken, function(req, res, next) {
-  User.findById(req.userId, { password: 0 }, function (err, user) {
+// e.g. http://localhost:3000/api/auth/user?user=andy15
+router.get('/user', function(req, res, next) {
+  const user = req.query.user;
+  User.findOne({ 'name': user}, { password: 0}, function (err, user) {
     if (err) {
       return res.status(500).send("There was a problem finding the user.");
     }
 
     if (!user) {
-      return res.status(404).send("No user found.");
+      return res.status(204).send("No user found.");
     }
 
     res.status(200).send(user);
+  });
+});
+
+router.get('/users', function(req, res, next) {
+  User.find({}, function (err, users) {
+    if (err) return res.status(500).send("There was a problem finding the users.");
+    res.status(200).send(users);
   });
 });
 

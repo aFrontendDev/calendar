@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import * as authActions from "../../actions/auth/authActions";
 
-function fetchRegister(username, password) {
+function fetchRegister(name, password, email) {
 
   return fetch("http://localhost:3000/api/auth/register", {
     method: 'post',
@@ -10,8 +10,9 @@ function fetchRegister(username, password) {
       Accept: 'application/json',
     }),
     body: JSON.stringify({
-      username,
-      password
+      name,
+      password, 
+      email
     })
   })
     .then(res => {
@@ -23,10 +24,10 @@ function fetchRegister(username, password) {
 }
 
 function* callRegisterSaga(action) {
-  const {username, password} = action.payload;
+  const {username, password, email} = action.payload;
 
   try {
-    const response = yield call(fetchRegister, username, password);
+    const response = yield call(fetchRegister, username, password, email);
     const auth = response;
 
     yield put(authActions.registerSuccess({auth}));
