@@ -18,7 +18,11 @@ function fetchRegister(name, password, email) {
     .then(res => {
       return res.json()
         .then(json => {
-          return json;
+          return {
+            auth: json,
+            loggedin: true,
+            username: name
+          }
         })
     })
 }
@@ -28,9 +32,13 @@ function* callRegisterSaga(action) {
 
   try {
     const response = yield call(fetchRegister, username, password, email);
-    const auth = response;
+    const responseObj = response;
 
-    yield put(authActions.registerSuccess({auth}));
+    yield put(authActions.registerSuccess({
+      auth: responseObj.auth,
+      loggedin: responseObj.loggedin,
+      username: responseObj.username
+    }));
   } catch (err) {
     yield put(authActions.registerFailure({err}));
   }

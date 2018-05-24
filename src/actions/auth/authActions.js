@@ -9,9 +9,11 @@ export const register = (username, password, email) => ({
 });
 
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const registerSuccess = ({auth}) => ({
+export const registerSuccess = ({auth, username}) => ({
   type: REGISTER_SUCCESS,
-  auth
+  auth,
+  username,
+  loggedin: true
 });
 
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
@@ -54,13 +56,39 @@ export const checkLoggedin = token => ({
 });
 
 export const ISLOGGEDIN_SUCCESS = "ISLOGGEDIN_SUCCESS";
-export const checkLoggedinSuccess = ({isLoggedin}) => ({
+export const checkLoggedinSuccess = ({isLoggedin, username}) => ({
   type: ISLOGGEDIN_SUCCESS,
-  loggedin: isLoggedin
+  loggedin: isLoggedin,
+  username
 });
 
 export const ISLOGGEDIN_FAILURE = "ISLOGGEDIN_FAILURE";
 export const checkLoggedinFailure = ({loggedinError}) => ({
   type: ISLOGGEDIN_FAILURE,
   loggedinError
+});
+
+
+
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const login = (username, password) => ({
+  type: LOGIN_REQUEST,
+  payload: {
+    username,
+    password
+  }
+});
+
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const loginSuccess = ({auth, username}) => ({
+  type: LOGIN_SUCCESS,
+  auth,
+  username,
+  loggedin: true
+});
+
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export const loginFailure = ({error}) => ({
+  type: LOGIN_FAILURE,
+  error
 });

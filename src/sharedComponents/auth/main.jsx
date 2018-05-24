@@ -1,22 +1,25 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import * as authActions from "../../actions/auth/authActions";
 
 import Register from "./register/index";
+import Login from "./login/login";
 
 class AuthMain extends Component {
 
   constructor(props) {
     super(props);
-    const loggedin = this.props.loggedin ? true : null;
+    const loggedin = this.props.loggedin ? this.props.loggedin : null;
 
     this.state = {
       isLoggedin: loggedin
     }
 
     this.checkLoggedin = this.checkLoggedin.bind(this);
+  }
 
+  componentDidMount() {
     this.checkLoggedin();
   }
 
@@ -40,6 +43,17 @@ class AuthMain extends Component {
           isLoggedin: loggedin
         })
       }
+
+      if (nextProps.auth) {
+        const loggedinToken = nextProps.auth.token;
+        const storageToken = window.localStorage.getItem('site_loggedin');
+
+        if (!storageToken) {
+          window.localStorage.setItem('site_loggedin', loggedinToken);
+        } else if (storageToken && storageToken !== loggedinToken) {
+          window.localStorage.setItem('site_loggedin', loggedinToken);
+        }
+      }
     }
   }
 
@@ -50,9 +64,13 @@ class AuthMain extends Component {
       {
         this.state.isLoggedin !== null ? 
           this.state.isLoggedin
-          ? <p>logged in</p>
-          : <Register />
-        : <Register />
+          ? <p>logged in: {this.props.username}</p>
+          : 
+            <Fragment>
+              <Register />
+              <Login />
+            </Fragment>
+        : null
       }
       </div>
     );
@@ -60,8 +78,11 @@ class AuthMain extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    loggedin: state.auth.loggedin
+    auth: state.auth.auth,
+    loggedin: state.auth.loggedin,
+    username: state.auth.username
   };
 };
 

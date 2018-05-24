@@ -61,7 +61,7 @@ class Register extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {registering, auth, usernameAvailable} = nextProps.authObject;
+    const {registering, auth, usernameAvailable} = nextProps;
 
     if (usernameAvailable !== null) {
       this.setState({
@@ -70,7 +70,6 @@ class Register extends Component {
     }
 
     if (!registering && auth && auth.token && !this.state.registered) {
-      console.log(auth);
 
       this.setState({
         registered: true
@@ -131,7 +130,8 @@ class Register extends Component {
 const mapStateToProps = state => {
   return {
     registering: state.auth.registering,
-    authObject: state.auth.auth
+    auth: state.auth.auth,
+    usernameAvailable: state.auth.usernameAvailable
   };
 };
 
