@@ -21,6 +21,8 @@ export const registerFailure = ({error}) => ({
 });
 
 
+
+
 export const USERNAME_REQUEST = "USERNAME_REQUEST";
 export const checkUsername = username => ({
   type: USERNAME_REQUEST,
@@ -39,4 +41,26 @@ export const USERNAME_FAILURE = "USERNAME_FAILURE";
 export const checkUsernameFailure = ({checkUsernameError}) => ({
   type: USERNAME_FAILURE,
   checkUsernameError
+});
+
+
+
+export const ISLOGGEDIN_REQUEST = "ISLOGGEDIN_REQUEST";
+export const checkLoggedin = token => ({
+  type: ISLOGGEDIN_REQUEST,
+  payload: {
+    token
+  }
+});
+
+export const ISLOGGEDIN_SUCCESS = "ISLOGGEDIN_SUCCESS";
+export const checkLoggedinSuccess = ({isLoggedin}) => ({
+  type: ISLOGGEDIN_SUCCESS,
+  loggedin: isLoggedin
+});
+
+export const ISLOGGEDIN_FAILURE = "ISLOGGEDIN_FAILURE";
+export const checkLoggedinFailure = ({loggedinError}) => ({
+  type: ISLOGGEDIN_FAILURE,
+  loggedinError
 });

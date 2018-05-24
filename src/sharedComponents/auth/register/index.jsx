@@ -70,10 +70,13 @@ class Register extends Component {
     }
 
     if (!registering && auth && auth.token && !this.state.registered) {
+      console.log(auth);
 
       this.setState({
         registered: true
-      })
+      });
+
+      window.localStorage.setItem('site_loggedin', auth.token);
     }
   }
 
@@ -127,8 +130,8 @@ class Register extends Component {
 
 const mapStateToProps = state => {
   return {
-    registering: state.registering,
-    authObject: state.auth
+    registering: state.auth.registering,
+    authObject: state.auth.auth
   };
 };
 

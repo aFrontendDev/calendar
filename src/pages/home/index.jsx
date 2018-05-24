@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Register from '../../sharedComponents/auth/register/index';
+import AuthMain from '../../sharedComponents/auth/main';
 
 const Fragment = React.Fragment;
 
@@ -14,7 +14,7 @@ export default class Home extends React.Component {
     return (
       <Fragment>
         <div>HOME</div>
-        <Register />
+        <AuthMain />
       </Fragment>
     );
   }
