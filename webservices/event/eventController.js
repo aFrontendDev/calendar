@@ -1,10 +1,11 @@
 const Event = require('./event');
 const bcrypt = require('bcryptjs');
+const { addEventToUser } = require('../user/userController');
 
 module.exports = {
 
   updateEvent(id, userId, targetDate, targetTime, locationName, locationLat, locationLon) {
-    const options = {};
+    const options = {new: true};
 
     return new Promise( (resolve, reject) => {
       Event.findById(id, (err, event) => {
@@ -64,11 +65,32 @@ module.exports = {
         const users = event.users;
         users.push({name: username, id: userId});
 
-        Event.findByIdAndUpdate(id, { users }, options, (err, data) => {
+        Event.findByIdAndUpdate(id, { users }, options, (err, event) => {
           if (err) {
             reject ({err});
           }
-          resolve ({data});
+
+          const eventObj = {
+            userId,
+            eventId: id,
+            admin: false,
+            eventName: event.name,
+            targetDate: event.targetDate
+          };
+
+          addEventToUser(eventObj)
+            .then(response => {
+              resolve ({
+                eventUpdate: event,
+                userUpdate: response
+              });
+            })
+            .catch(err => {
+              resolve ({
+                eventUpdate: event,
+                userUpdate: err
+              });
+            })
         })
       })
     });
@@ -87,8 +109,9 @@ module.exports = {
     });
   },
 
-  newEvent(adminName, adminId, password, targetDate, targetTime, locationName, locationLat, locationLon) {
-    
+  newEvent(eventObj) {
+    const { adminName, adminId, password, targetDate, targetTime, locationName, locationLat, locationLon, name } = eventObj;
+
     const hashedPassword = bcrypt.hashSync(password, 8);
     const location = {};
     location['name'] = locationName;
@@ -102,7 +125,8 @@ module.exports = {
           password: hashedPassword,
           targetDate,
           targetTime,
-          location
+          location,
+          name
         },
         (err, event) => {
 
@@ -110,7 +134,27 @@ module.exports = {
             reject ({err});
           }
 
-          resolve ({event});
+          const eventObj = {
+            userId: adminId,
+            eventId: event._id,
+            admin: true,
+            eventName: event.name,
+            targetDate: event.targetDate
+          };
+
+          addEventToUser(eventObj)
+            .then(response => {
+              resolve ({
+                eventUpdate: event,
+                userUpdate: response
+              });
+            })
+            .catch(err => {
+              resolve ({
+                eventUpdate: event,
+                userUpdate: err
+              });
+            })
         }
       );
     });

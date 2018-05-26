@@ -6,7 +6,8 @@ var EventSchema = new mongoose.Schema({
   users: Array,
   targetDate: String,
   targetTime: String,
-  location: Object
+  location: Object,
+  name: String
 });
 mongoose.model('Event', EventSchema);
 

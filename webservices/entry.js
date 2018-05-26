@@ -33,8 +33,21 @@ app.post('/api/event/new', (req, res) => {
   const locationName = body.locationName || '';
   const locationLat = body.locationLat || '';
   const locationLon = body.locationLon || '';
+  const name = body.name;
 
-  newEvent(adminName, adminId, password, targetDate, targetTime, locationName, locationLat, locationLon)
+  const eventObj = {
+    adminName,
+    adminId,
+    password,
+    targetDate,
+    targetTime,
+    locationName,
+    locationLat,
+    locationLon,
+    name
+  }
+
+  newEvent(eventObj)
     .then(response => {
       res.send(response);
     });
