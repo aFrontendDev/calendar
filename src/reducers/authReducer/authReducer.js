@@ -11,7 +11,10 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGOUT
+  LOGOUT,
+  GETUSER_REQUEST,
+  GETUSER_SUCCESS,
+  GETUSER_FAILURE
 } from "../../actions/auth/authActions";
 
 // reducer with initial state
@@ -23,11 +26,12 @@ const initialState = {
   checkUsernameError: null,
   loggedin: null,
   loggedinError: null,
-  username: null
+  username: null,
+  user: null
 };
 
 const authReducer = (state = initialState, action) => {
-  const {type, auth, error, usernameAvailable, checkUsernameError, loggedin, loggedinError, username} = action;
+  const {type, auth, error, usernameAvailable, checkUsernameError, loggedin, loggedinError, username, user} = action;
 
   switch (type) {
     case REGISTER_REQUEST:
@@ -127,6 +131,28 @@ const authReducer = (state = initialState, action) => {
         auth: null,
         username: null,
         loggedin: false
+      };
+      break;
+    case GETUSER_REQUEST:
+      return {
+        ...state,
+        gettingUser: true,
+        error: null
+      };
+      break;
+    case GETUSER_SUCCESS:
+      return {
+        ...state,
+        gettingUser: false,
+        user
+      };
+      break;
+    case GETUSER_FAILURE:
+      return {
+        ...state,
+        gettingUser: false,
+        user: null,
+        error
       };
       break;
 

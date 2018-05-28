@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 
 // Pages
-import DynamicPage from './pages/dynamic/index.jsx';
+import Event from './pages/event/index.jsx';
 import Home from './pages/home/index.jsx';
 
 class Routes extends React.Component {
@@ -13,7 +13,7 @@ class Routes extends React.Component {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/dynamic/:anId" component={DynamicPage} />
+        <Route exact path="/event/:eventId" component={Event} />
         <Route component={Home} />
       </Switch>
     )

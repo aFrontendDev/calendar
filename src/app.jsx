@@ -23,7 +23,7 @@ export default class App extends React.Component {
                 <Link to={"/"}>Home</Link>
               </li>
               <li>
-                <Link to={"/dynamic/123"}>Dynamic page test</Link>
+                <Link to={"/event/123"}>Event page test</Link>
               </li>
             </ul>
           </nav>

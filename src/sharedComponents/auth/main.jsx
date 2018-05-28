@@ -63,14 +63,14 @@ class AuthMain extends Component {
     return (
       <div>
       {
-        this.state.isLoggedin !== null ? 
+        this.state.isLoggedin !== null ?
           this.state.isLoggedin
-          ? 
+          ?
             <Fragment>
               <p>logged in: {this.props.username}</p>
               <Logout />
             </Fragment>
-          : 
+          :
             <Fragment>
               <Register />
               <Login />
@@ -83,7 +83,6 @@ class AuthMain extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     auth: state.auth.auth,
     loggedin: state.auth.loggedin,

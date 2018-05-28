@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Dynamic extends React.Component {
+class Event extends React.Component {
 
   constructor() {
     super();
@@ -10,11 +10,11 @@ class Dynamic extends React.Component {
   }
 
   componentDidMount() {
-    const anId = this.props.match.params.anId;
-    document.title = `Page: ${anId}`;
+    const eventId = this.props.match.params.eventId;
+    document.title = `Page: ${eventId}`;
 
     this.setState({
-      urlParam: anId
+      urlParam: eventId
     });
 
   }
@@ -22,11 +22,11 @@ class Dynamic extends React.Component {
   render() {
     return (
       <section>
-        <h2>Dynamic page</h2>
+        <h2>Event page</h2>
         <p>{this.state.urlParam}</p>
       </section>
     )
   }
 }
 
-export default Dynamic;
+export default Event;

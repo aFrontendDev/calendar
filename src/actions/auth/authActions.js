@@ -101,3 +101,24 @@ export const logout = () => ({
   username: null,
   loggedin: false
 });
+
+export const GETUSER_REQUEST = "GETUSER_REQUEST";
+export const getUserRequest = (username, token) => ({
+  type: GETUSER_REQUEST,
+  payload: {
+    username,
+    token
+  }
+});
+
+export const GETUSER_SUCCESS = "GETUSER_SUCCESS";
+export const getUserSuccess = user => ({
+  type: GETUSER_SUCCESS,
+  user
+});
+
+export const GETUSER_FAILURE = "GETUSER_FAILURE";
+export const getUserFailure = error => ({
+  type: GETUSER_FAILURE,
+  error
+});
