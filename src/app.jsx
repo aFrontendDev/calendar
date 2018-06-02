@@ -25,6 +25,9 @@ export default class App extends React.Component {
               <li>
                 <Link to={"/event/123"}>Event page test</Link>
               </li>
+              <li>
+                <Link to={"/new-event"}>Create New Event</Link>
+              </li>
             </ul>
           </nav>
           <Routes />

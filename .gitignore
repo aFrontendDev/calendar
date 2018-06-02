@@ -29,6 +29,7 @@ node_modules
 
 #private
 webservices/config.js
+src/config.js
 
 # generated components
 dist

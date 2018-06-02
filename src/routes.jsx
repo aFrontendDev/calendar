@@ -5,6 +5,7 @@ import {
 
 // Pages
 import Event from './pages/event/index.jsx';
+import EventNew from './pages/event/new.jsx';
 import Home from './pages/home/index.jsx';
 
 class Routes extends React.Component {
@@ -14,6 +15,7 @@ class Routes extends React.Component {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/event/:eventId" component={Event} />
+        <Route exact path="/new-event" component={EventNew} />
         <Route component={Home} />
       </Switch>
     )
