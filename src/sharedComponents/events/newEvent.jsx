@@ -4,6 +4,9 @@ import { config } from "../../config.js";
 
 // import * as eventActions from "../../actions/events/eventActions";
 import * as authActions from "../../actions/auth/authActions";
+import * as dateFunctions from "../../utility/dates";
+
+import Calendar from "../calendar/calendar";
 
 class NewEvent extends Component {
 
@@ -29,7 +32,9 @@ class NewEvent extends Component {
       name: '',
       where: '',
       whereResults: [],
-      selectedPlace: null
+      selectedPlace: null,
+      calendarOpened: false,
+      date: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,10 +46,21 @@ class NewEvent extends Component {
     this.updateMap = this.updateMap.bind(this);
     this.checkMapReady = this.checkMapReady.bind(this);
     this.initMap = this.initMap.bind(this);
+    this.openCalendar = this.openCalendar.bind(this);
+    this.handleDaySelected = this.handleDaySelected.bind(this);
 
     if (!this.props.loggedin) {
       this.checkLoggedin();
     }
+  }
+
+  openCalendar() {
+
+    this.setState({calendarOpened: true});
+  }
+
+  closeCalendar() {
+    this.setState({calendarOpened: false});
   }
 
   checkLoggedin() {
@@ -103,6 +119,15 @@ class NewEvent extends Component {
         this.updateMap(lat, lon);
       }
     }
+  }
+
+  handleDaySelected(date) {
+    console.log('new event: ', date);
+    this.setState({
+      date
+    });
+
+    this.closeCalendar();
   }
 
   handleSubmit(e) {
@@ -178,6 +203,9 @@ class NewEvent extends Component {
     script.async = true;
 
     document.body.appendChild(script);
+
+    const dates = dateFunctions.getMonthData(2018, 6);
+    console.log(dates);
   }
 
   componentDidUpdate() {
@@ -212,6 +240,12 @@ class NewEvent extends Component {
             </div>
 
             <div className="form-field">
+              <label htmlFor="date">Date of event: </label>
+              <input disabled type="text" name="date" value={this.state.date} placeholder="e.g. 10/08/2018" />
+              <button type="button" onClick={this.openCalendar}>open calendar</button>
+            </div>
+
+            <div className="form-field">
               <label htmlFor="where">Where: </label>
               <input type="text" name="where" value={this.state.where} placeholder="e.g. Ply, Manchester" onChange={this.handleWhereChange} />
               <div>
@@ -239,6 +273,11 @@ class NewEvent extends Component {
               <button className="btn btn--style-a">Create event</button>
             </div>
           </form>
+        </div>
+
+        <div className={`modal ${this.state.calendarOpened ? 'modal--open' : ''}`}>
+          <button onClick={() => this.closeCalendar()} className="modal__close-btn">Close</button>
+          <Calendar onDayClick={this.handleDaySelected}/>
         </div>
 
       </section>

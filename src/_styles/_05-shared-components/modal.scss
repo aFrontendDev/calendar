@@ -1,0 +1,22 @@
+// modal
+
+.modal {
+  position: fixed;
+  top: 20px;
+  bottom: 20px;
+  left: 50px;
+  right: 50px;
+  border: solid 2px black;
+  background: white;
+  display: none;
+
+  &.modal--open {
+    display: block;
+  }
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: -20px;
+  right: 20px;
+}
