@@ -4,7 +4,8 @@ const { addEventToUser } = require('../user/userController');
 
 module.exports = {
 
-  updateEvent(id, userId, targetDate, targetTime, locationName, locationLat, locationLon) {
+  updateEvent(eventObj) {
+    const { id, userId, targetDate, targetTimeFrom, targetTimeTo, locationName, locationLat, locationLon } = eventObj;
     const options = {new: true};
 
     return new Promise( (resolve, reject) => {
@@ -25,8 +26,12 @@ module.exports = {
           updateObj['targetDate'] = targetDate;
         }
 
-        if (targetTime && targetTime.length > 0) {
-          updateObj['targetTime'] = targetTime;
+        if (targetTimeFrom && targetTimeFrom.length > 0) {
+          updateObj['targetTimeFrom'] = targetTimeFrom;
+        }
+
+        if (targetTimeTo && targetTimeTo.length > 0) {
+          updateObj['targetTimeTo'] = targetTimeTo;
         }
 
         if (locationName && locationName.length > 0) {
@@ -39,6 +44,10 @@ module.exports = {
 
         if (locationLon && locationLon.length > 0) {
           location['lon'] = locationLon;
+        }
+
+        if (description && description.length > 0) {
+          updateObj['description'] = description;
         }
 
         updateObj['location'] = location;
@@ -110,7 +119,7 @@ module.exports = {
   },
 
   newEvent(eventObj) {
-    const { adminName, adminId, password, targetDate, targetTime, locationName, locationLat, locationLon, name } = eventObj;
+    const { adminName, adminId, password, targetDate, targetTimeFrom, targetTimeTo, locationName, locationLat, locationLon, name, description } = eventObj;
 
     const hashedPassword = bcrypt.hashSync(password, 8);
     const location = {};
@@ -124,9 +133,11 @@ module.exports = {
           adminId,
           password: hashedPassword,
           targetDate,
-          targetTime,
+          targetTimeFrom,
+          targetTimeTo,
           location,
-          name
+          name,
+          description
         },
         (err, event) => {
 

@@ -34,7 +34,14 @@ class NewEvent extends Component {
       whereResults: [],
       selectedPlace: null,
       calendarOpened: false,
-      date: ''
+      date: '',
+      loadingPlaceResults: false,
+      description: '',
+      showTimes: false,
+      timeFromHours: 0,
+      timeFromMins: 0,
+      timeToHours: 0,
+      timeToMins: 0
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,6 +55,13 @@ class NewEvent extends Component {
     this.initMap = this.initMap.bind(this);
     this.openCalendar = this.openCalendar.bind(this);
     this.handleDaySelected = this.handleDaySelected.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handleTimeFromHoursChange = this.handleTimeFromHoursChange.bind(this);
+    this.handleTimeFromMinsChange = this.handleTimeFromMinsChange.bind(this);
+    this.handleTimeToHoursChange = this.handleTimeToHoursChange.bind(this);
+    this.handleTimeToMinsChange = this.handleTimeToMinsChange.bind(this);
+    this.validateTime = this.validateTime.bind(this);
 
     if (!this.props.loggedin) {
       this.checkLoggedin();
@@ -91,7 +105,9 @@ class NewEvent extends Component {
     clearTimeout(this.fetchWhereTimeout);
     const self = this;
     const search = e.target.value;
-    this.setState({where: search});
+    this.setState({
+      where: search
+    });
 
     this.fetchWhereTimeout = setTimeout(() => {
       self.fetchWhereResults(search);
@@ -130,8 +146,95 @@ class NewEvent extends Component {
     this.closeCalendar();
   }
 
+  handleDescriptionChange(e) {
+    this.setState({description: e.target.value});
+  }
+
+  handleTimeChange(e) {
+    const val = e.target.value;
+    const isallDay = val === 'all-day';
+
+    this.setState({
+      showTimes: !isallDay
+    })
+  }
+
+  handleTimeFromHoursChange(e) {
+    let val = e.target.value;
+    val = parseInt(val, 10);
+
+    this.setState({
+      timeFromHours: val
+    })
+  }
+
+  handleTimeFromMinsChange(e) {
+    let val = e.target.value;
+    val = parseInt(val, 10);
+
+    this.setState({
+      timeFromMins: val
+    })
+  }
+
+  handleTimeToHoursChange(e) {
+    let val = e.target.value;
+    val = parseInt(val, 10);
+
+    this.setState({
+      timeToHours: val
+    })
+  }
+
+  handleTimeToMinsChange(e) {
+    let val = e.target.value;
+    val = parseInt(val, 10);
+
+    this.setState({
+      timeToMins: val
+    })
+  }
+  
+  validateTime() {
+    let isValid = false;
+
+    const timeFromHours = this.state.timeFromHours;
+    const timeFromMins = this.state.timeFromMins;
+    const timeToHours = this.state.timeToHours;
+    const timeToMins = this.state.timeToMins;
+
+    const isLessThanToHours = timeFromHours < timeToHours;
+    if (isLessThanToHours) {
+      isValid = true;
+      return isValid;
+    }
+
+    const isMoreThanToHours = timeFromHours > timeToHours;
+    if (isMoreThanToHours) {
+      isValid = false;
+      return isValid;
+    }
+
+    // if we're here then the hours are equal
+    if (timeFromMins < timeToMins) {
+      isValid = true;
+      return isValid;
+    }
+
+    return isValid;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
+
+    // if the user has specified a time then we need to validate it
+    if (this.state.showTimes) {
+      const timeIsValid = this.validateTime();
+      console.log('timeIsValid', timeIsValid);
+      if (!timeIsValid) {
+        return
+      }
+    }
   }
 
 
@@ -165,27 +268,32 @@ class NewEvent extends Component {
       return;
     }
 
-    fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${search}&key=${config.googleapiKey}`)
+    this.setState({
+      loadingPlaceResults: true
+    });
+
+    fetch(`http://localhost:3000/api/places/search?term=${search}`)
       .then(res => {
         if (res.status !== 200) {
           this.setState({
-            whereResults: []
+            whereResults: [],
+            loadingPlaceResults: false
           })
           return null
         }
 
         res.json()
           .then(json => {
-            // console.log(json)
             this.setState({
-              whereResults: json.results
+              whereResults: json,
+              loadingPlaceResults: false
             })
           })
       })
       .catch(err => {
-        // console.log('err', err);
         this.setState({
-          whereResults: []
+          whereResults: [],
+          loadingPlaceResults: false
         })
       })
   }
@@ -219,6 +327,10 @@ class NewEvent extends Component {
   }
 
   render() {
+    const hoursArray = [];
+    for (let i = 0; i < 24; i++) {
+      hoursArray.push(i);
+    }
 
     if (!this.props.loggedin) {
       return null;
@@ -236,19 +348,107 @@ class NewEvent extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="form-field">
               <label htmlFor="name">Event name: </label>
-              <input type="text" name="name" value={this.state.name} placeholder="e.g. Night out in Manchester" onChange={this.handleNameChange} />
+              <input type="text" name="name" id="name" value={this.state.name} placeholder="e.g. Night out in Manchester" onChange={this.handleNameChange} />
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="description">Description: </label>
+              <textarea name="description" id="description" value={this.state.description} placeholder="e.g. We've not met up in ages so lets make this a night to remember" onChange={this.handleDescriptionChange} />
             </div>
 
             <div className="form-field">
               <label htmlFor="date">Date of event: </label>
-              <input disabled type="text" name="date" value={this.state.date} placeholder="e.g. 10/08/2018" />
+              <input disabled type="text" id="date" name="date" value={this.state.date} placeholder="e.g. 10/08/2018" />
               <button type="button" onClick={this.openCalendar}>open calendar</button>
             </div>
 
             <div className="form-field">
+              <label htmlFor="time-all-day">What time: </label>
+
+              <label className="radio">
+                <input onChange={this.handleTimeChange} type="radio" name="time" id="time-all-day" value="all-day" defaultChecked/>
+                <label htmlFor="time-all-day" className="radio--replace"></label>
+                All Day
+              </label>
+
+              <label className="radio">
+                <input onChange={this.handleTimeChange} type="radio" name="time" id="time-specify" value="specify" />
+                <label htmlFor="time-specify" className="radio--replace"></label>
+                Specific times
+              </label>
+
+              {
+                this.state.showTimes ?
+                  <div>
+
+                    <div className="form-field">
+                      <label htmlFor="time-from-hours">From: </label>
+                      <span className="select-replace">
+                        <select onChange={this.handleTimeFromHoursChange} name="time-from-hours" id="time-from-hours">
+                          {
+                            hoursArray.map((item, index) => {
+
+                              return (
+                                <option key={`hours-from_${index}`} value={item}>
+                                  {item}
+                                </option>
+                              )
+                            })
+                          }
+                        </select>
+                      </span>
+                       : 
+                      <span className="select-replace">
+                        <select onChange={this.handleTimeFromMinsChange} name="time-from-mins" id="time-from-mins">
+                          <option value="0">00</option>
+                          <option value="15">15</option>
+                          <option value="30">30</option>
+                          <option value="45">45</option>
+                        </select>
+                      </span>
+                    </div>
+
+                    <div className="form-field">
+                      <label htmlFor="time-to-hours">To: </label>
+                      <span className="select-replace">
+                        <select onChange={this.handleTimeToHoursChange} name="time-to-hours" id="time-to-hours">
+                          {
+                            hoursArray.map((item, index) => {
+
+                              return (
+                                <option key={`hours-to_${index}`} value={item}>
+                                  {item}
+                                </option>
+                              )
+                            })
+                          }
+                        </select>
+                      </span>
+                       : 
+                      <span className="select-replace">
+                        <select onChange={this.handleTimeToMinsChange} name="time-to-mins" id="time-to-mins">
+                          <option value="0">00</option>
+                          <option value="15">15</option>
+                          <option value="30">30</option>
+                          <option value="45">45</option>
+                        </select>
+                      </span>
+                    </div>
+
+                  </div>
+                : null
+              }
+            </div>
+
+            <div className="form-field">
               <label htmlFor="where">Where: </label>
-              <input type="text" name="where" value={this.state.where} placeholder="e.g. Ply, Manchester" onChange={this.handleWhereChange} />
+              <input type="text" name="where" id="where" value={this.state.where} placeholder="e.g. Ply, Manchester" onChange={this.handleWhereChange} />
               <div>
+                {
+                  this.state.loadingPlaceResults
+                  ? <span className="spinner spinner--in spinner--local spinner--small" role="presentation" aria-hidden="true"></span>
+                  : null
+                }
                 <ul>
                 {
                   this.state.whereResults && this.state.whereResults.length > 0 ?

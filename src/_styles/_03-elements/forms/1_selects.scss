@@ -84,26 +84,26 @@ select {
 		}
 	}
 
-	&:after {
-		display: block;
-		@include rem(height, 10px);
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		@include rem(right, 23px);
-		@include rem(width, 14px);
-		z-index: 1;
-		@include rem(font-size, 15px);
-		@include rem(line-height, 11px);
-		color: $gray-a;
-		font-family: $icon-font;
-		content: "\e906";
-		z-index: 1;
+	// &:after {
+	// 	display: block;
+	// 	@include rem(height, 10px);
+	// 	position: absolute;
+	// 	top: 50%;
+	// 	transform: translateY(-50%);
+	// 	@include rem(right, 23px);
+	// 	@include rem(width, 14px);
+	// 	z-index: 1;
+	// 	@include rem(font-size, 15px);
+	// 	@include rem(line-height, 11px);
+	// 	color: $gray-a;
+	// 	font-family: $icon-font;
+	// 	content: "\e906";
+	// 	z-index: 1;
 
-		.lt-ie10 & {
-			display: none;
-		}
-	}
+	// 	.lt-ie10 & {
+	// 		display: none;
+	// 	}
+	// }
 }
 
 // Make multiple select elements height not fixed

@@ -5,9 +5,11 @@ var EventSchema = new mongoose.Schema({
   password: String,
   users: Array,
   targetDate: String,
-  targetTime: String,
+  targetTimeFrom: String,
+  targetTimeTo: String,
   location: Object,
-  name: String
+  name: String,
+  description: String
 });
 mongoose.model('Event', EventSchema);
 

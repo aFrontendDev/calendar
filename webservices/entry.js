@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const db = require('./db');
+const Raven = require('./raven');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,6 +19,7 @@ app.all('*', function(req, res, next) {
 
 
 const { newEvent, getEvent, addUserToEvent, updateEvent } = require('./event/eventController');
+const { placeSearch } = require('./externalApi/googlePlaces');
 
 const AuthController = require('./auth/authController');
 app.use('/api/auth', AuthController);
@@ -29,22 +31,26 @@ app.post('/api/event/new', (req, res) => {
   const adminId = body.userid;
   const password = body.password || '';
   const targetDate = body.targetDate;
-  const targetTime = body.targetTime || '';
+  const targetTimeFrom = body.targetTimeFrom || '00:00';
+  const targetTimeTo = body.targetTimeTo || '23:45';
   const locationName = body.locationName || '';
   const locationLat = body.locationLat || '';
   const locationLon = body.locationLon || '';
   const name = body.name;
+  const description = body.description;
 
   const eventObj = {
     adminName,
     adminId,
     password,
     targetDate,
-    targetTime,
+    targetTimeFrom,
+    targetTimeTo,
     locationName,
     locationLat,
     locationLon,
-    name
+    name,
+    description
   }
 
   newEvent(eventObj)
@@ -77,17 +83,44 @@ app.post('/api/event/update', (req, res) => {
   const id = req.body.id;
   const userId = req.body.userid;
   const targetDate = req.body.targetDate;
-  const targetTime = req.body.targetTime;
+  const targetTimeFrom = req.body.targetTimeFrom;
+  const targetTimeTo = req.body.targetTimeTo;
   const locationName = req.body.locationName;
   const locationLat = req.body.locationLat;
   const locationLon = req.body.locationLon;
+  const description = req.body.description;
 
-  updateEvent(id, userId, targetDate, targetTime, locationName, locationLat, locationLon)
+  const eventObj = {
+    id,
+    userId,
+    targetDate,
+    targetTimeFrom,
+    targetTimeTo,
+    locationName,
+    locationLat,
+    locationLon,
+    description
+  }
+
+  updateEvent(eventObj)
     .then(response => {
       res.send(response);
     })
     .catch(err => {
       res.status(500).send({'err': err});
+    })
+});
+
+app.get('/api/places/search', (req, res) => {
+  const searchTerm = req.query.term;
+
+  placeSearch(searchTerm)
+    .then(response => {
+      res.send(response);
+    })
+    .catch(err => {
+      Raven.captureException(err);
+      res.send(err);
     })
 });
 
