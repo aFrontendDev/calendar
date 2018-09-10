@@ -3,13 +3,15 @@ import * as authActions from "../../actions/auth/authActions";
 
 function fetchCheckUsername(username) {
 
-  return fetch(`http://localhost:3000/api/auth/user?user=${username}`)
+  return fetch(`http://localhost:3000/api/auth/userexists?user=${username}`)
     .then(res => {
-      if (res.status === 204) {
-        return true;
-      } else {
-        return false;
-      }
+      return res.json().then(json => {
+        if (json.exists) {
+          return {available: false};
+        } else {
+          return {available: true};
+        }
+      })
     })
 }
 
@@ -18,7 +20,7 @@ function* callCheckUsernameSaga(action) {
 
   try {
     const response = yield call(fetchCheckUsername, username);
-    const usernameAvailable = response;
+    const usernameAvailable = response.available;
 
     yield put(authActions.checkUsernameSuccess({usernameAvailable}));
   } catch (checkUsernameError) {

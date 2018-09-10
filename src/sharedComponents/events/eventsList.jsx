@@ -2,18 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
-import * as authActions from "../../actions/auth/authActions";
+import * as eventActions from "../../actions/events/eventActions";
 
 class EventList extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {};
-  }
+    this.calledGetEvents = false;
 
-  static getDerivedStateFromProps(props, state) {
-    return props;
+    this.state = {
+      eventsPresent: false
+    };
   }
 
   componentDidUpdate() {
@@ -21,8 +21,9 @@ class EventList extends Component {
     if (this.props.loggedin && this.props.username && !this.props.user) {
       const loggedinToken = window.localStorage.getItem('site_loggedin');
 
-      if (loggedinToken) {
-        this.props.getUser(this.props.username, loggedinToken);
+      if (loggedinToken && !this.calledGetEvents) {
+        this.calledGetEvents = true;
+        this.props.getEvents(loggedinToken);
       }
     }
   }
@@ -43,10 +44,10 @@ class EventList extends Component {
 
         <div>
           {
-            this.props.user && this.props.user.eventsAdmin ?
+            this.props.events.eventsData ?
             <ul>
               {
-                this.props.user.eventsAdmin.map((event, index) => {
+                this.props.events.eventsData.eventsAdmin.map((event, index) => {
 
                   return(
                     <li key={`eventsAdmin_${index}`}>
@@ -60,10 +61,10 @@ class EventList extends Component {
           }
 
           {
-            this.props.user && this.props.user.events ?
+            this.props.events.eventsData ?
             <ul>
               {
-                this.props.user.events.map((event, index) => {
+                this.props.events.eventsData.events.map((event, index) => {
 
                   return(
                     <li key={`events_${index}`}>
@@ -83,15 +84,17 @@ class EventList extends Component {
 }
 
 const mapStateToProps = state => {
+
   return {
     user: state.auth.user,
     username: state.auth.username,
-    loggedin: state.auth.loggedin
+    loggedin: state.auth.loggedin,
+    events: state.events || null
   };
 };
 
 const mapDispatchToProps = {
-  getUser: authActions.getUserRequest
+  getEvents: eventActions.getUserEventsRequest
 };
 
 

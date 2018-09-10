@@ -121,7 +121,7 @@ module.exports = {
   newEvent(eventObj) {
     const { adminName, adminId, password, targetDate, targetTimeFrom, targetTimeTo, locationName, locationLat, locationLon, name, description } = eventObj;
 
-    const hashedPassword = bcrypt.hashSync(password, 8);
+    const hashedPassword = password ? bcrypt.hashSync(password, 8) : null;
     const location = {};
     location['name'] = locationName;
     location['lat'] = locationLat;

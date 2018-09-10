@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { Provider } from "react-redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootSaga from "./rootSaga";
 import rootReducer from "./rootReducer";
@@ -15,7 +16,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 let store = createStore(
   rootReducer,
-  compose(applyMiddleware(sagaMiddleware))
+  compose(composeWithDevTools(applyMiddleware(sagaMiddleware)))
 );
 
 // run the saga

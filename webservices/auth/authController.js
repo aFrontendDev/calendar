@@ -35,32 +35,74 @@ router.post('/register', function(req, res) {
 
 // e.g. http://localhost:3000/api/auth/user?user=andy15
 router.get('/user', function(req, res, next) {
-  var token = req.headers['x-access-token'];
+  const user = req.query.user;
+  User.findOne({ 'name': user}, { password: 0}, function (err, user) {
+    if (err) {
+      return res.status(500).send("There was a problem finding the user.");
+    }
+
+    if (!user) {
+      return res.status(200).send({'no_user': true});
+    }
+
+    const userData = transformUser(user);
+    res.status(200).send(userData);
+  });
+});
+
+transformUser = (user) => {
+  return {
+    username: user.name,
+    userId: user._id
+  }
+}
+
+// e.g. http://localhost:3000/api/auth/userexists?user=andy2
+router.get('/userexists', function(req, res, next) {
+  const user = req.query.user;
+  User.findOne({ 'name': user}, { password: 0}, function (err, user) {
+    
+    if (err) {
+      return res.status(500).send("There was a problem finding the user.");
+    }
+
+    let data = {};
+    if (!user) {
+      data = {'exists': false};
+    } else {
+      data = {'exists': true};
+    }
+
+    return res.status(200).send(data);
+  });
+});
+
+// e.g. http://localhost:3000/api/auth/userevents - based on users auth token
+router.get('/userevents', function(req, res, next) {
+  const token = req.headers['x-access-token'];
   if (!token) {
     return res.status(401).send({ auth: false, message: 'No token provided.' });
   }
-
+  
   jwt.verify(token, config.secret, function(err, decoded) {
     if (err) {
-      return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+      return res.status(401).send({ auth: false, message: 'Failed to authenticate token.' });
     }
-
-    const user = req.query.user;
-    User.findOne({ 'name': user}, { password: 0}, function (err, user) {
+    
+    User.findById(decoded.id, { password: 0 }, function (err, user) {
+    
       if (err) {
-        // console.log('err');
         return res.status(500).send("There was a problem finding the user.");
       }
-  
-      if (!user) {
-        // console.log('no user');
-        return res.status(404).send("No user found.");
+
+      const events = {
+        events: user.events,
+        eventsAdmin: user.eventsAdmin
       }
   
-      res.status(200).send(user);
+      return res.status(200).send(events);
     });
   });
-
 });
 
 router.get('/authorized', function(req, res, next) {
@@ -71,7 +113,7 @@ router.get('/authorized', function(req, res, next) {
   
   jwt.verify(token, config.secret, function(err, decoded) {
     if (err) {
-      return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+      return res.status(401).send({ auth: false, message: 'Failed to authenticate token.' });
     }
     
     User.findById(decoded.id, { password: 0 }, function (err, user) {

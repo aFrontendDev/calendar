@@ -65,11 +65,13 @@ class NewEvent extends Component {
 
     if (!this.props.loggedin) {
       this.checkLoggedin();
+    } else {
+      console.log(this.props);
+      console.log(this.props.user);
     }
   }
 
   openCalendar() {
-
     this.setState({calendarOpened: true});
   }
 
@@ -235,6 +237,27 @@ class NewEvent extends Component {
         return
       }
     }
+
+    if (!this.state.name || this.state.name == '') {
+      console.log('no title');
+      return;
+    }
+
+    if (!this.state.date || this.state.date == '') {
+      console.log('no date');
+      return;
+    }
+
+    // data needed:
+    // adminName, adminId, password, targetDate, targetTimeFrom, targetTimeTo, locationName, locationLat, locationLon, name, description
+    console.log(this.state.user);
+    console.log(this.props);
+
+    const newEventData = {
+    }
+
+    // nothing else is required;
+    console.log('submit event now', newEventData);
   }
 
 
@@ -409,6 +432,7 @@ class NewEvent extends Component {
                     </div>
 
                     <div className="form-field">
+                      {/* USE NATIVE TIME INPUT */}
                       <label htmlFor="time-to-hours">To: </label>
                       <span className="select-replace">
                         <select onChange={this.handleTimeToHoursChange} name="time-to-hours" id="time-to-hours">

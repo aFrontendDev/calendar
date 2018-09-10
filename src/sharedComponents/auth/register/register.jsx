@@ -63,11 +63,9 @@ class Register extends Component {
   componentWillReceiveProps(nextProps) {
     const {registering, auth, usernameAvailable} = nextProps;
 
-    if (usernameAvailable !== null) {
-      this.setState({
-        usernameAvailable
-      })
-    }
+    this.setState({
+      usernameAvailable
+    })
 
     if (!registering && auth && auth.token && !this.state.registered) {
 
@@ -92,7 +90,7 @@ class Register extends Component {
         {
           !this.state.registered
           ?
-            <form className="register__form" onSubmit={this.handleRegister}>
+            <form className="register__form" autoComplete="off" onSubmit={this.handleRegister}>
               <div className="form-field">
                 <label htmlFor="username">Username: </label>
                 <input type="text" name="username" value={this.state.username} placeholder="e.g. andy123" onChange={this.handleUsernameChange} />

@@ -62,7 +62,8 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         checkingUsername: true,
-        checkUsernameError: null
+        checkUsernameError: null,
+        usernameAvailable: null
       };
       break;
     case USERNAME_SUCCESS:
