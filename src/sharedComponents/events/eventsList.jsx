@@ -9,30 +9,19 @@ class EventList extends Component {
   constructor(props) {
     super(props);
 
-    this.calledGetEvents = false;
-
-    this.state = {
-      eventsPresent: false
-    };
+    this.getEventsData = this.getEventsData.bind(this)
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
+    this.getEventsData();
+  }
 
-    if (this.props.loggedin && this.props.username && !this.props.user) {
-      const loggedinToken = window.localStorage.getItem('site_loggedin');
-
-      if (loggedinToken && !this.calledGetEvents) {
-        this.calledGetEvents = true;
-        this.props.getEvents(loggedinToken);
-      }
-    }
+  getEventsData() {
+    const loggedinToken = window.localStorage.getItem('site_loggedin');
+    this.props.getEvents(loggedinToken);
   }
 
   render() {
-
-    if (!this.props.loggedin) {
-      return null;
-    }
 
     return (
       <section>
@@ -44,10 +33,10 @@ class EventList extends Component {
 
         <div>
           {
-            this.props.events.eventsData ?
+            this.props.eventsData && this.props.eventsData.eventsAdmin ?
             <ul>
               {
-                this.props.events.eventsData.eventsAdmin.map((event, index) => {
+                this.props.eventsData.eventsAdmin.map((event, index) => {
 
                   return(
                     <li key={`eventsAdmin_${index}`}>
@@ -61,10 +50,10 @@ class EventList extends Component {
           }
 
           {
-            this.props.events.eventsData ?
+            this.props.eventsData && this.props.eventsData.events ?
             <ul>
               {
-                this.props.events.eventsData.events.map((event, index) => {
+                this.props.eventsData.events.map((event, index) => {
 
                   return(
                     <li key={`events_${index}`}>
@@ -86,10 +75,7 @@ class EventList extends Component {
 const mapStateToProps = state => {
 
   return {
-    user: state.auth.user,
-    username: state.auth.username,
-    loggedin: state.auth.loggedin,
-    events: state.events || null
+    eventsData: state.events && state.events.eventsData ? state.events.eventsData : null
   };
 };
 

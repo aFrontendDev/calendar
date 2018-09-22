@@ -17,8 +17,12 @@ function fetchLogin(name, password) {
     .then(res => {
       return res.json()
         .then(json => {
+          // console.log({json})
           return json;
         })
+    })
+    .catch(err => {
+      console.log({err})
     })
 }
 
@@ -29,7 +33,12 @@ function* callLoginSaga(action) {
     const response = yield call(fetchLogin, username, password);
     const auth = response;
 
-    yield put(authActions.loginSuccess({auth, username}));
+    // console.log('login response', response);
+    if (response.auth) {
+      yield put(authActions.loginSuccess({auth, username}));
+    } else {
+      yield put(authActions.loginFailure());  
+    }
   } catch (err) {
     yield put(authActions.loginFailure({err}));
   }

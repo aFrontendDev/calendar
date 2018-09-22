@@ -61,6 +61,14 @@ class Login extends Component {
               <input type="password" name="password" value={this.state.password} onChange={this.handlePasswordChange} />
             </div>
 
+            <div className="form-messages">
+              {
+                this.props.loginFail
+                ? <p>Sorry the combination of your username and password was incorrect</p>
+                : null
+              }
+            </div>
+
             <div className="form-actions">
               <button className="btn btn--style-a">Login</button>
             </div>
@@ -74,7 +82,9 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggingIn: state.auth.loggingIn
+    loggingIn: state.auth.loggingIn,
+    loggedin: state.auth.loggedin,
+    loginFail: state.auth.loginFail
   };
 };
 

@@ -4,6 +4,10 @@ import {
   GETUSEREVENTS_FAILURE
 } from "../../actions/events/eventActions";
 
+import {
+  LOGOUT
+} from "../../actions/auth/authActions";
+
 // reducer with initial state
 const initialState = {
   fetching: false,
@@ -14,6 +18,13 @@ const eventsReducer = (state = initialState, action) => {
   const {type, error, eventsData} = action;
 
   switch (type) {
+    case LOGOUT:
+      return {
+        ...state,
+        gettingEvents: false,
+        eventsData: null
+      };
+      break;
     case GETUSEREVENTS_REQUEST:
       return {
         ...state,

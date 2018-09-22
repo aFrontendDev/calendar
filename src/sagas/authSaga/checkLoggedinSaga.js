@@ -12,11 +12,22 @@ function fetchCheckLoggedin(token) {
     .then(res => {
       if (res.status === 200) {
         return res.json()
+
           .then(json => {
-            const username = json.name;
-            return {
-              loggedin: true,
-              username
+            // console.log({json})
+            const authorized = json.auth;
+
+            if (authorized) {
+              const username = json.name;
+              return {
+                loggedin: true,
+                username
+              } 
+            } else {
+              return {
+                loggedin: false,
+                username: null
+              };
             }
           })
       } else {
@@ -25,6 +36,9 @@ function fetchCheckLoggedin(token) {
           username: null
         };
       }
+    })
+    .catch(err => {
+      console.log({err})
     })
 }
 
@@ -40,6 +54,7 @@ function* callCheckLoggedinSaga(action) {
       username: loggedInObject.username
     }));
   } catch (loggedinError) {
+    console.log({loggedinError})
     yield put(authActions.checkLoggedinFailure({loggedinError}));
   }
 }

@@ -16,6 +16,7 @@ function fetchGetEvents(token) {
 
       return res.json()
         .then(json => {
+          // console.log({json})
           return json;
         })
     })

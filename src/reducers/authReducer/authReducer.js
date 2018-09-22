@@ -27,7 +27,8 @@ const initialState = {
   loggedin: null,
   loggedinError: null,
   username: null,
-  user: null
+  user: null,
+  loginFail: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -115,7 +116,8 @@ const authReducer = (state = initialState, action) => {
         loggingIn: false,
         auth,
         username,
-        loggedin: true
+        loggedin: true,
+        loginFail: false
       };
       break;
     case LOGIN_FAILURE:
@@ -123,7 +125,8 @@ const authReducer = (state = initialState, action) => {
         ...state,
         loggingIn: false,
         auth: null,
-        error
+        error,
+        loginFail: true
       };
       break;
     case LOGOUT:

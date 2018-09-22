@@ -113,7 +113,7 @@ router.get('/authorized', function(req, res, next) {
   
   jwt.verify(token, config.secret, function(err, decoded) {
     if (err) {
-      return res.status(401).send({ auth: false, message: 'Failed to authenticate token.' });
+      return res.status(200).send({ auth: false, message: 'Failed to authenticate token.' });
     }
     
     User.findById(decoded.id, { password: 0 }, function (err, user) {
@@ -125,7 +125,7 @@ router.get('/authorized', function(req, res, next) {
         return res.status(404).send("No user found.");
       }
 
-      res.status(200).send(user);
+      res.status(200).send({auth: true, user});
     });
   });
 });
@@ -141,16 +141,18 @@ router.get('/users', function(req, res, next) {
 router.post('/login', function(req, res) {
   User.findOne({ name: req.body.name }, function (err, user) {
     if (err) {
+      // console.log({err})
       return res.status(500).send('Error on the server.');
     }
 
     if (!user) {
+      // console.log('no user')
       return res.status(404).send('No user found.');
     }
 
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
     if (!passwordIsValid) {
-      return res.status(401).send({ auth: false, token: null });
+      return res.status(200).send({ auth: false, token: null });
     }
 
     var token = jwt.sign({ id: user._id }, config.secret, {

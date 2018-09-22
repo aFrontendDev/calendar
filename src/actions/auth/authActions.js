@@ -84,13 +84,17 @@ export const loginSuccess = ({auth, username}) => ({
   type: LOGIN_SUCCESS,
   auth,
   username,
-  loggedin: true
+  loggedin: true,
+  loginFail: false
 });
 
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const loginFailure = ({error}) => ({
   type: LOGIN_FAILURE,
-  error
+  auth: null,
+  username: null,
+  loggedin: false,
+  loginFail: true
 });
 
 

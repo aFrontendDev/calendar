@@ -26,6 +26,7 @@ class AuthMain extends Component {
 
   checkLoggedin() {
     const loggedinToken = window.localStorage.getItem('site_loggedin');
+    
     if (!loggedinToken) {
       this.setState({
         isLoggedin: false
@@ -36,6 +37,7 @@ class AuthMain extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // console.log({nextProps})
     const loggedin = nextProps.loggedin;
 
     if (loggedin !== null) {
